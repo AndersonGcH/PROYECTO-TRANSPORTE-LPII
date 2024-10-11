@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.transporte.app.entity.Usuario;
+import com.transporte.app.services.PersonalService;
 import com.transporte.app.services.RolService;
 import com.transporte.app.services.UsuarioService;
 
@@ -18,6 +19,8 @@ public class UsuarioController {
 
 	@Autowired
 	private RolService rolService;
+	
+	
 
 	@GetMapping("/")
     public String login(){
@@ -33,7 +36,10 @@ public class UsuarioController {
 		if(band==true) {
 			   model.addAttribute("usuarios", usuarioService.getAllUsuario());
 			   model.addAttribute("rolList", rolService.getAllRol());			
+			  
 			   pagina =  "usuario/index";					
+			   
+			   
 		}else {
 			pagina="error";
 		}		
