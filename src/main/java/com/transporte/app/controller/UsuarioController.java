@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.transporte.app.entity.Usuario;
-import com.transporte.app.services.PersonalService;
 import com.transporte.app.services.RolService;
 import com.transporte.app.services.UsuarioService;
 
