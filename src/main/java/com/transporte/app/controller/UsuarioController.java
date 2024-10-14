@@ -36,7 +36,7 @@ public class UsuarioController {
 			   model.addAttribute("usuarios", usuarioService.getAllUsuario());
 			   model.addAttribute("rolList", rolService.getAllRol());			
 			  
-			   pagina =  "usuario/index";					
+			   pagina =  "administrador/index";					
 			   
 			   
 		}else {

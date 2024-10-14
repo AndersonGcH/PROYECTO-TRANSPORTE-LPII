@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Revisión Buses</title>
+        <title>Pág. Principal</title>
         <link rel="icon" href="/images/logo.png" type="image/png">
 		<!--lib_ant-->
 		<link rel="stylesheet"
@@ -24,13 +24,13 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">BusExpress</a>
+            <a class="navbar-brand ps-3" href="#">BusExpress</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 			<!-- Navbar Cerrar Sesion-->
 			<ul class="navbar-nav ms-auto me-0 me-md-3 my-md-0">
 			    <li class="nav-item dropdown">
-					<a class="btn btn-outline-danger" th:href="@{/Logout}">Cerrar Sesion</a>&nbsp;
+					<a class="btn btn-outline-danger" th:href="@{/logout}">Cerrar Sesion</a>&nbsp;
 			    </li>
 			</ul>
         </nav>
@@ -44,7 +44,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Buses
                             </a>
-							<a class="nav-link" href="/revision">
+                            <a class="nav-link" href="/revision">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Revisión Buses
                             </a>
@@ -54,51 +54,7 @@
             </div>
             <div id="layoutSidenav_content">
             <main>
-			<div class="container-fluid px-4">
-				<h1 class="mt-4">Listado - Revisión Buses</h1>
-				<div class="row">
-					<div class="col-lg-3">
-						<a th:href="@{/revision/new}" class="btn btn-primary btn-sm mb-3">Agregar Revisiones</a>
-					</div>
-				</div>
-				<div class="card mb-4">
-					<div class="card-header">
-						<i class="fas fa-table me-1"></i>
-						DataTable - Revisiones Buses
-					</div>
-					<div class="card-body">
-						<table id="datatablesSimple">
-							<thead class="table-dark">
-								<tr>
-							            <th>ID Revision</th>
-							            <th>Nom. Bus</th>
-							            <th>Fec. de Revisión</th>
-							            <th>Tip. de Revisión</th>
-							            <th>Resultado</th>
-							            <th>Observaciones</th>
-										<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="revisionBus : ${revisiones}">
-							        <td th:text="${revisionBus.revisionId}"></td>
-							        <td th:text="${revisionBus.bus.modelo}"></td>
-							        <td th:text="${revisionBus.fechaRevision}"></td>
-							        <td th:text="${revisionBus.tipoRevision}"></td>
-							        <td th:text="${revisionBus.resultado}"></td>
-							        <td th:text="${revisionBus.observaciones}">
-									<td>
-										<a th:href="@{/revision/edit/{id}(id=${revisionBus.revisionId})}"
-											class="btn btn-primary">Actualizar</a>
-										<a th:href="@{/revision/delete/{id}(id=${revisionBus.revisionId})}"
-											class="btn btn-danger">Eliminar</a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+		
 			</main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
