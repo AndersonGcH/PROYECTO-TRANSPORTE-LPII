@@ -25,6 +25,17 @@ create table tb_bus(
     placa VARCHAR(20)
 );
 
+CREATE TABLE tb_revision (
+    revision_id INT PRIMARY KEY AUTO_INCREMENT not null,
+    id_bus INT,
+    fecha_revision DATE,
+    tipo_revision VARCHAR(50),
+    resultado VARCHAR(50),
+    observaciones VARCHAR(50),
+    FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus)
+);
+
+
 create TABLE personal (
     id_personal INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -79,3 +90,6 @@ values('Paco','Gonzales','admin','12345',1),
 
 INSERT INTO tb_bus (modelo, marca, anio, capacidad, placa)
 VALUES ('Volvo 9700', 'Volvo', 2020, 50, 'ABC-123');
+
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
+(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones')
