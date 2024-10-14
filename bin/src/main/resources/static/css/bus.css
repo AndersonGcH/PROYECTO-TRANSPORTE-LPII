@@ -1,0 +1,45 @@
+.sb-nav-fixed{
+	background: -webkit-linear-gradient(90deg, #e6b70e,#c29e6c,#d1c2aa);
+	background: linear-gradient(90deg, #e6b70e,#c29e6c,#d1c2aa);
+	background-image: url('/images/Bus.jpg'); 
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+.bg-primary{
+	background-image: url('/images/Bus_login.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+.mb-4{
+	opacity: 0.9;
+}
+	
+.floating-bus {
+	position: absolute;
+	font-size: 50px;
+	color: rgb(0, 0, 0);
+	animation: float 4s ease-in-out infinite;
+	z-index: -1;
+}
+
+@keyframes float {
+	0% {
+	transform: translateY(0);
+	}
+	50% {
+	transform: translateY(-20px);
+	}
+	100% {
+	transform: translateY(0);
+	}
+}
