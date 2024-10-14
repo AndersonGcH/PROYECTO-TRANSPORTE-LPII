@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>Student Management System</title>
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">Student Management System</a>
+
+            <!-- Toggler/Collapse Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+            </div>
+        </nav>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                    <h1 class = "text-center"> Crear Nuevo Producto</h1>
+                    <div class="card-body">
+                   <form th:action="@{/bus}" th:object="${bus}" method="POST">
+						    <!-- Campo oculto para el id_personal -->
+						    <div class="form-group" style="display: none">
+						        <label>Codigo</label>
+						        <input type="text" name="idBus" th:field="*{idBus}"
+						               class="form-control" placeholder="Ingresar Codigo" />
+						    </div>
+						    
+						    <!-- Campo para el nombre -->
+						    <div class="form-group">
+						        <label>Modelo</label>
+						        <input type="text" name="modelo" th:field="*{modelo}" class="form-control"
+						               placeholder="Ingresar Nombre" />
+						    </div>
+						    
+						    <!-- Campo para el apellido -->
+						    <div class="form-group">
+						        <label>Marca</label>
+						        <input type="text" name="marca" th:field="*{marca}" class="form-control"
+						               placeholder="Ingresar Apellido" />
+						    </div>
+						    
+						    <!-- Campo para el DNI -->
+						    <div class="form-group">
+						        <label>Año</label>
+						        <input type="text" name="anio" th:field="*{anio}" class="form-control"
+						               placeholder="Ingresar DNI" />
+						    </div>
+						    
+						    <!-- Campo para el teléfono -->
+						    <div class="form-group">
+						        <label>Capacidad</label>
+						        <input type="text" name="capacidad" th:field="*{capacidad}" class="form-control"
+						               placeholder="Ingresar Teléfono" />
+						    </div>
+						    
+						    <!-- Campo para el email -->
+						    <div class="form-group">
+						        <label>Placa</label>
+						        <input type="text" name="placa" th:field="*{placa}" class="form-control"
+						               placeholder="Ingresar Email" />
+						    </div>
+
+						    <!-- Botón para enviar el formulario -->
+						    <div class="box-footer">
+						        <button type="submit" class="btn btn-primary">Enviar</button>
+						    </div>
+						</form>
+						                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
