@@ -1,6 +1,9 @@
 package com.transporte.app.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +23,7 @@ import lombok.Setter;
 public class RevisionBus {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "revision_id")
     private Integer revisionId;
 
@@ -29,7 +32,8 @@ public class RevisionBus {
     private Bus bus;
 
     @Column(name = "fecha_revision", nullable = false)
-    private Date fechaRevision;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaRevision;
 
     @Column(name = "tipo_revision", length = 50, nullable = false)
     private String tipoRevision;

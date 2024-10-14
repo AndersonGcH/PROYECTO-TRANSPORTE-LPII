@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
-        <title>Agregar Revision</title>
+        <title>Editar Revision</title>
         <link rel="icon" href="/images/logo.png" type="image/png">
         <link rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -13,27 +13,23 @@
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
             <!-- Brand -->
             <a class="navbar-brand" href="#">Student Management System</a>
-
+            
             <!-- Toggler/Collapse Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/usuario}">Mantenedor Usuario</a>
+                        <a class="nav-link" th:href="@{/usuario/}">Mantenedor Usuario</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/cliente}">Mantenedor Cliente</a>
+                        <a class="nav-link" th:href="@{/cliente/}">Mantenedor Cliente</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/producto}">Mantenedor Producto</a>
+                        <a class="nav-link" th:href="@{/producto/}">Mantenedor Producto</a>
                     </li>
                 </ul>
             </div>
@@ -41,10 +37,10 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-                    <h1 class = "text-center"> Crear Nueva Revision</h1>
+                    <h1 class = "text-center"> Editar Revision</h1>
                     <div class="card-body">
-                   <form th:action="@{/revision}" th:object="${revisiones}" method="POST">
-							    <!-- Campo oculto para el id_personal -->
+                    <form th:action="@{/revision/{id} (id=${revision.revisionId})}" th:object="${revision}" method="POST">
+                 <!-- Campo oculto para el id_personal -->
 						    <div class="form-group"  style="display: none">
 						        <label>Codigo</label>
 						        <input type="text" name="revisionId" th:field="*{revisionId}"
@@ -79,11 +75,11 @@
 						    <div class="box-footer">
 						        <button type="submit" class="btn btn-primary">Enviar</button>
 						    </div>
-						</form>
-						                   
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
+             
     </body>
 </html>
