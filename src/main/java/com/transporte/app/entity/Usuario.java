@@ -40,7 +40,6 @@ public class Usuario {
 	public Usuario() {
 		
 	}
-
 	public Usuario(String nombres, String apellidos,String username ,String clave, Rol rol) {
 		this.nombres=nombres;
 		this.apellidos=apellidos;
