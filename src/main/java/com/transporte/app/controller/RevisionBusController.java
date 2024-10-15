@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.transporte.app.entity.Bus;
-import com.transporte.app.entity.Personal;
 import com.transporte.app.entity.RevisionBus;
 import com.transporte.app.services.BusService;
 import com.transporte.app.services.RevisionBusService;
