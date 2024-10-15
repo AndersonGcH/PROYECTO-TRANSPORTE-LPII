@@ -1,7 +1,6 @@
 package com.transporte.app.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
