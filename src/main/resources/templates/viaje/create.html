@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Nuevo Viaje</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Gestión de Viajes</a>
+</nav>
+<div class="container mt-3">
+    <h2 class="text-center">Crear Nuevo Viaje</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <form th:action="@{/viaje}" th:object="${viaje}" method="POST">
+                
+                <!-- Campo para el destino -->
+                <div class="form-group">
+                    <label>Destino</label>
+                    <select th:field="*{idDestino}" class="form-control">
+					    <option th:each="destino : ${destinos}" th:value="${destino.idDestino}" th:text="${destino.nombre}"></option>
+					</select>
+
+                </div>
+                
+               <!-- Campo para la fecha de salida -->
+			<!-- Campo para la fecha de salida -->
+					<div class="form-group">
+					    <label>Fecha de Salida</label>
+					    <input type="date" th:field="*{fechaSalida}" class="form-control" required
+					           th:value="${#dates.format(viaje.fechaSalida, 'yyyy-MM-dd')}">
+					</div>
+					
+					<!-- Campo para la fecha de llegada -->
+					<div class="form-group">
+					    <label>Fecha de Llegada</label>
+					    <input type="date" th:field="*{fechaLlegada}" class="form-control" required
+					           th:value="${#dates.format(viaje.fechaLlegada, 'yyyy-MM-dd')}">
+					</div>
+
+
+                <!-- Combobox para seleccionar el bus -->
+                <div class="form-group">
+                    <label>Bus</label>
+                    <select th:field="*{idBus}" class="form-control">
+                        <option th:each="bus : ${buses}" th:value="${bus.idBus}" th:text="${bus.modelo}"></option>
+                    </select>
+                </div>
+
+                <!-- Campo para el precio -->
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="number" step="0.01" th:field="*{precio}" class="form-control" required>
+                </div>
+                
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="btn btn-primary">Programar Viaje</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
