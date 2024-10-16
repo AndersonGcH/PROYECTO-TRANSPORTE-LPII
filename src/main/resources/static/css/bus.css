@@ -1,0 +1,25 @@
+.sb-nav-fixed{
+	background: -webkit-linear-gradient(90deg, #e6b70e,#c29e6c,#d1c2aa);
+	background: linear-gradient(90deg, #e6b70e,#c29e6c,#d1c2aa);
+	background-image: url('/images/Bus.jpg'); 
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+.bg-primary{
+	background-image: url('/images/Bus_login.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+.mb-4{
+	opacity: 0.9;
+}

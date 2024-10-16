@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
-        <title>Editar Bus</title>
+        <title>Editar Revision</title>
         <link rel="icon" href="/images/logo.png" type="image/png">
         <link rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -37,50 +37,39 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-                    <h1 class = "text-center"> Editar Buses</h1>
+                    <h1 class = "text-center"> Editar Revision</h1>
                     <div class="card-body">
-                    <form th:action="@{/bus/{id} (id=${bus.idBus})}" th:object="${bus}" method="POST">
-              <!-- Campo oculto para el id_personal -->
-						    <div class="form-group" style="display: none">
+                    <form th:action="@{/revision/{id} (id=${revision.revisionId})}" th:object="${revision}" method="POST">
+                 <!-- Campo oculto para el id_personal -->
+						    <div class="form-group"  style="display: none">
 						        <label>Codigo</label>
-						        <input type="text" name="idBus" th:field="*{idBus}"
+						        <input type="text" name="revisionId" th:field="*{revisionId}"
 						               class="form-control" placeholder="Ingresar Codigo" />
 						    </div>
-						    
-						    <!-- Campo para el nombre -->
-						    <div class="form-group">
-						        <label>Modelo</label>
-						        <input type="text" name="modelo" th:field="*{modelo}" class="form-control"
-						               placeholder="Ingresar Nombre" />
-						    </div>
-						    
-						    <!-- Campo para el apellido -->
-						    <div class="form-group">
-						        <label>Marca</label>
-						        <input type="text" name="marca" th:field="*{marca}" class="form-control"
-						               placeholder="Ingresar Apellido" />
-						    </div>
-						    
-						    <!-- Campo para el DNI -->
-						    <div class="form-group">
-						        <label>Periodo</label>
-						        <input type="text" name="anio" th:field="*{anio}" class="form-control"
-						               placeholder="Ingresar DNI" />
-						    </div>
-						    
-						    <!-- Campo para el teléfono -->
-						    <div class="form-group">
-						        <label>Capacidad</label>
-						        <input type="text" name="capacidad" th:field="*{capacidad}" class="form-control"
-						               placeholder="Ingresar Teléfono" />
-						    </div>
-						    
-						    <!-- Campo para el email -->
-						    <div class="form-group">
-						        <label>Placa</label>
-						        <input type="text" name="placa" th:field="*{placa}" class="form-control"
-						               placeholder="Ingresar Email" />
-						    </div>
+							<div class="form-group">
+					            <label for="bus">Bus</label>
+					            <select id="bus" name="bus" th:field="*{bus}" class="form-control">
+					                <option th:each="bus : ${buses}" th:value="${bus.idBus}" th:text="${bus.modelo}"></option>
+					            </select>
+      					 	</div>
+						 	 <div class="form-group">
+					            <label for="fechaRevision">Fecha de Revision</label>
+					            <input type="date" id="fechaRevision" name="fechaRevision" th:field="*{fechaRevision}" class="form-control" />
+					        </div>
+					        <div class="form-group">
+					            <label for="tipoRevision">Tipo de Revision</label>
+					            <input type="text" id="tipoRevision" name="tipoRevision" th:field="*{tipoRevision}" class="form-control" />
+					        </div>
+					        <div class="form-group">
+					            <label for="resultado">Resultado</label>
+					            <input type="text" id="resultado" name="resultado" th:field="*{resultado}" class="form-control" />
+					        </div>
+					        <div class="form-group">
+					            <label for="observaciones">Observaciones</label>
+					            <input type="text" id="observaciones" name="observaciones" th:field="*{observaciones}" class="form-control" />
+					        </div>
+
+						   
 
 						    <!-- Botón para enviar el formulario -->
 						    <div class="box-footer">

@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
-        <meta name="author" content="" />  
-        <title>Buses</title>
+        <meta name="author" content="" />
+        <title>Revisión Buses</title>
         <link rel="icon" href="/images/logo.png" type="image/png">
 		<!--lib_ant-->
 		<link rel="stylesheet"
@@ -46,7 +46,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Buses
                             </a>
-                            <a class="nav-link" href="/revision">
+							<a class="nav-link" href="/revision">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Revisión Buses
                             </a>
@@ -57,42 +57,42 @@
             <div id="layoutSidenav_content">
             <main>
 			<div class="container-fluid px-4">
-				<h1 class="mt-4">Listado - Bus</h1>
+				<h1 class="mt-4">Listado - Revisión Buses</h1>
 				<div class="row">
 					<div class="col-lg-3">
-						<a th:href="@{/bus/new}" class="btn btn-primary btn-sm mb-3">Agregar Buses</a>
+						<a th:href="@{/revision/new}" class="btn btn-primary btn-sm mb-3">Agregar Revisiones</a>
 					</div>
 				</div>
 				<div class="card mb-4">
 					<div class="card-header">
 						<i class="fas fa-table me-1"></i>
-						DataTable - Bus
+						DataTable - Revisiones Buses
 					</div>
 					<div class="card-body">
 						<table id="datatablesSimple">
 							<thead class="table-dark">
 								<tr>
-									<th>ID</th>
-									<th>Modelo</th>
-									<th>Marca</th>
-									<th>A�o</th>
-									<th>Capacidad</th>
-									<th>Placa</th>
-									<th></th>
+							            <th>ID Revision</th>
+							            <th>Nom. Bus</th>
+							            <th>Fec. de Revisión</th>
+							            <th>Tip. de Revisión</th>
+							            <th>Resultado</th>
+							            <th>Observaciones</th>
+										<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="bus : ${buses}">
-									<td th:text="${bus.idBus}"></td>
-									<td th:text="${bus.modelo}"></td>
-									<td th:text="${bus.marca}"></td>
-									<td th:text="${bus.anio}"></td>
-									<td th:text="${bus.capacidad}"></td>
-									<td th:text="${bus.placa}"></td>
+								<tr th:each="revisionBus : ${revisiones}">
+							        <td th:text="${revisionBus.revisionId}"></td>
+							        <td th:text="${revisionBus.bus.modelo}"></td>
+							        <td th:text="${revisionBus.fechaRevision}"></td>
+							        <td th:text="${revisionBus.tipoRevision}"></td>
+							        <td th:text="${revisionBus.resultado}"></td>
+							        <td th:text="${revisionBus.observaciones}">
 									<td>
-										<a th:href="@{/bus/edit/{id}(id=${bus.idBus})}"
+										<a th:href="@{/revision/edit/{id}(id=${revisionBus.revisionId})}"
 											class="btn btn-primary">Actualizar</a>
-										<a th:href="@{/bus/delete/{id}(id=${bus.idBus})}"
+										<a th:href="@{/revision/delete/{id}(id=${revisionBus.revisionId})}"
 											class="btn btn-danger">Eliminar</a>
 									</td>
 								</tr>

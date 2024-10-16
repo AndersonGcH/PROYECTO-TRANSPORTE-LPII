@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
-        <title>Registrar Bus</title>
-        <link rel="icon" href="/images/logo.png" type="image/png">
+        <title>Bus Management System</title>
         <link rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -27,7 +26,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-                    <h1 class = "text-center"> Crear Buses</h1>
+                    <h1 class = "text-center"> Crear Nuevo Producto</h1>
                     <div class="card-body">
                    <form th:action="@{/bus}" th:object="${bus}" method="POST">
 						    <!-- Campo oculto para el id_personal -->
@@ -53,7 +52,7 @@
 						    
 						    <!-- Campo para el DNI -->
 						    <div class="form-group">
-						        <label>Periodo</label>
+						        <label>A�o</label>
 						        <input type="text" name="anio" th:field="*{anio}" class="form-control"
 						               placeholder="Ingresar DNI" />
 						    </div>

@@ -11,6 +11,10 @@ import com.transporte.app.entity.Usuario;
 import com.transporte.app.services.RolService;
 import com.transporte.app.services.UsuarioService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UsuarioController {
 	@Autowired
@@ -36,13 +40,22 @@ public class UsuarioController {
 			   model.addAttribute("usuarios", usuarioService.getAllUsuario());
 			   model.addAttribute("rolList", rolService.getAllRol());			
 			  
-			   pagina =  "usuario/index";					
+			   pagina =  "administrador/index";					
 			   
 			   
 		}else {
 			pagina="error";
 		}		
 		return pagina;
+	}
+	
+	@PostMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+	    HttpSession session = request.getSession(false);
+	    if (session != null) {
+	        session.invalidate();
+	    }
+	    return "redirect:/";
 	}
 	
 	 @GetMapping("/usuario/new")
