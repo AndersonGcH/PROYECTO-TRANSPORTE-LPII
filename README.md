@@ -1,32 +1,32 @@
-Create Database BDTransporte;
-use BDTransporte;
+CREATE DATABASE BDTransporte;
+USE BDTransporte;
 
-create table rol(
-idrol int auto_increment primary key,
-descripcion varchar(100)
+CREATE TABLE rol (
+    idrol INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(100)
 );
 
-create table usuario(
-idusuario bigint auto_increment primary key,
-nombres varchar(100),
-apellidos varchar(100),
-usuario varchar(50),
-clave varchar(50),
-idrol int,
-constraint fk_usuario_rol foreign key (idrol) references rol(idrol)
+CREATE TABLE usuario (
+    idusuario BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombres VARCHAR(100),
+    apellidos VARCHAR(100),
+    usuario VARCHAR(50),
+    clave VARCHAR(50),
+    idrol INT,
+    CONSTRAINT fk_usuario_rol FOREIGN KEY (idrol) REFERENCES rol(idrol)
 );
 
-create table tb_bus(
-	id_bus INT AUTO_INCREMENT PRIMARY KEY not null,
+CREATE TABLE tb_bus (
+    id_bus INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     modelo VARCHAR(50),
-	marca VARCHAR(50),
+    marca VARCHAR(50),
     anio INT,
     capacidad INT,
     placa VARCHAR(20)
 );
 
 CREATE TABLE tb_revision (
-    revision_id INT PRIMARY KEY AUTO_INCREMENT not null,
+    revision_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     id_bus INT,
     fecha_revision DATE,
     tipo_revision VARCHAR(50),
@@ -35,8 +35,7 @@ CREATE TABLE tb_revision (
     FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus)
 );
 
-
-create TABLE personal (
+CREATE TABLE personal (
     id_personal INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
@@ -45,51 +44,53 @@ create TABLE personal (
     email VARCHAR(100),
     direccion VARCHAR(255),
     idrol INT,
-    FOREIGN KEY (idrol) REFERENCES rol(idrol) 
+    FOREIGN KEY (idrol) REFERENCES rol(idrol)
 );
 
 CREATE TABLE tb_destino (
-  id_destino INT AUTO_INCREMENT PRIMARY KEY,
-  nombre_des VARCHAR(100)
+    id_destino INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_des VARCHAR(100)
 );
 
 CREATE TABLE tb_cliente (
-  id_cli INT AUTO_INCREMENT PRIMARY KEY,
-  nombre_cli VARCHAR(100),
-  dni VARCHAR(8) UNIQUE
+    id_cli INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_cli VARCHAR(100),
+    dni VARCHAR(8) UNIQUE
 );
 
 CREATE TABLE tb_pasaje (
-  id_pasaje INT AUTO_INCREMENT PRIMARY KEY,
-  id_cli INT,
-  id_destino INT,
-  id_bus INT,
-  precio DECIMAL(10,2),
-  estado varchar(30),
-  FOREIGN KEY (id_cli) REFERENCES tb_cliente(id_cli),
-  FOREIGN KEY (id_destino) REFERENCES tb_destino(id_destino),
-  FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus)
+    id_pasaje INT AUTO_INCREMENT PRIMARY KEY,
+    id_cli INT,
+    id_destino INT,
+    id_bus INT,
+    precio DECIMAL(10,2),
+    estado VARCHAR(30),
+    FOREIGN KEY (id_cli) REFERENCES tb_cliente(id_cli),
+    FOREIGN KEY (id_destino) REFERENCES tb_destino(id_destino),
+    FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus)
 );
 
 CREATE TABLE tb_viaje (
-  id_viaje INT AUTO_INCREMENT PRIMARY KEY,
-  id_bus INT,
-  id_destino INT,
-  fech_sal DATETIME,
-  fech_lle DATETIME,
-  incidencias VARCHAR(40),
-  FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus),
-  FOREIGN KEY (id_destino) REFERENCES tb_destino(id_destino)
+    id_viaje INT AUTO_INCREMENT PRIMARY KEY,
+    id_bus INT,
+    id_destino INT,
+    fech_sal DATETIME,
+    fech_lle DATETIME,
+    incidencias VARCHAR(40),
+    FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus),
+    FOREIGN KEY (id_destino) REFERENCES tb_destino(id_destino)
 );
 
-insert into rol (descripcion) values ('Administrador'),('Cliente');
+-- Inserting initial data into the tables
+INSERT INTO rol (descripcion) 
+VALUES ('Administrador'), ('Cliente');
 
-insert into usuario (nombres,apellidos,usuario,clave,idrol)
-values('Paco','Gonzales','admin','12345',1),
-('Jorge','Guerra','jorge','jorge123',2);
+INSERT INTO usuario (nombres, apellidos, usuario, clave, idrol) 
+VALUES ('Paco', 'Gonzales', 'admin', '12345', 1),
+       ('Jorge', 'Guerra', 'jorge', 'jorge123', 2);
 
-INSERT INTO tb_bus (modelo, marca, anio, capacidad, placa)
+INSERT INTO tb_bus (modelo, marca, anio, capacidad, placa) 
 VALUES ('Volvo 9700', 'Volvo', 2020, 50, 'ABC-123');
 
-INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
-(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones')
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) 
+VALUES (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');

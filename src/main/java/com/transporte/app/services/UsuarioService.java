@@ -10,5 +10,5 @@ public interface UsuarioService {
 	
 	public List<Usuario> getAllUsuario();
 	
-	public boolean login(Usuario usuario);
+	public Usuario login(Usuario usuario);
 }

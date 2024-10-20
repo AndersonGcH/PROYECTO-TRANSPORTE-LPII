@@ -32,19 +32,8 @@ public class UsuarioServiceImpl implements UsuarioService{
 	}
 
 	@Override
-	public boolean login(Usuario usuario) {
-		boolean band;
-		// TODO Auto-generated method stub		
-		Usuario entidad=usuarioRepositorio.findByUsuarioAndClave(usuario.getUsername(), usuario.getClave());
-		System.out.println("usuario.getUsername()--> "+usuario.getUsername());
-		System.out.println("usuario.getClave()--> "+usuario.getClave());
-		
-		if(entidad==null) {
-			band=false;
-		}else {
-			band=true;
-		}		
-		return band;
-	}
+    public Usuario login(Usuario usuario) {
+        return usuarioRepositorio.findByUsuarioAndClave(usuario.getUsername(), usuario.getClave());
+    }
 
 }
