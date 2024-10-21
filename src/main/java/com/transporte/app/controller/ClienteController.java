@@ -1,8 +1,10 @@
 package com.transporte.app.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.transporte.app.entity.Destino;
 import com.transporte.app.entity.DetalleVentaPasaje;
+import com.transporte.app.entity.Pasajero;
 import com.transporte.app.entity.VentaPasaje;
 import com.transporte.app.entity.Viaje;
 import com.transporte.app.services.DestinoService;
+import com.transporte.app.services.PasajeroService;
 import com.transporte.app.services.ViajeService;
 
 @Controller
@@ -29,6 +33,8 @@ public class ClienteController {
     private DestinoService destinoService;
     @Autowired
     private ViajeService viajeService;
+    @Autowired
+    private PasajeroService pasajeroService;
     
     List<DetalleVentaPasaje> detalles=new ArrayList<DetalleVentaPasaje>();
 
@@ -113,6 +119,59 @@ public class ClienteController {
         model.addAttribute("venta", venta);
         return "cliente/carrito";
     }
+    
+    @GetMapping("/delete/cart/{id}")
+    public String deleteViaje(@PathVariable Integer id, Model model) {
+        // Verifica que detalles esté inicializado y no sea nulo
+        if (detalles != null) {
+            // Filtra los detalles, excluyendo el que se desea eliminar
+            List<DetalleVentaPasaje> detalleventaPasaje = detalles.stream()
+                    .filter(detalleVenta -> !detalleVenta.getViaje().getIdViaje().equals(id))
+                    .collect(Collectors.toList());
+
+            // Actualiza la lista de detalles
+            detalles = detalleventaPasaje;
+
+            // Calcula el total
+            double sumaTotal = detalles.stream()
+                    .mapToDouble(DetalleVentaPasaje::getTotal)
+                    .sum();
+
+            // Asigna el total a la venta
+            if (venta != null) {
+                venta.setTotal(sumaTotal);
+            } else {
+                // Si 'venta' es null, crea una nueva instancia o maneja el caso
+                venta = new VentaPasaje();
+                venta.setTotal(sumaTotal);
+            }
+
+            // Agrega los detalles y la venta al modelo
+            model.addAttribute("cart", detalles);
+            model.addAttribute("venta", venta);
+        } else {
+            // Manejo si detalles es nulo (opcional)
+            model.addAttribute("cart", Collections.emptyList());
+        }
+
+        // Redirige a la vista del carrito
+        return "cliente/carrito"; // Asegúrate de que esta vista esté correctamente configurada
+    }
+
+ 
+
+    
+    @GetMapping("/order")
+    public String order(Model model) {
+    	Pasajero pasajero = pasajeroService.findById(1);
+
+        model.addAttribute("cart", detalles);
+        model.addAttribute("venta", venta);
+        model.addAttribute("pasajero",pasajero);
+        return "cliente/resumenorden";
+    }
+    
+    
 
 
 }

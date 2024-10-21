@@ -1,5 +1,7 @@
 package com.transporte.app.service.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,11 @@ public class PasajeroServiceImpl implements PasajeroService{
 	@Autowired
 	private PasajeroRepository pasajeroRepository;
 	
-	@Override
-	public Pasajero findById(Integer id) {
-		// TODO Auto-generated method stub
-		return pasajeroRepository.findById(id).get();
+	
+
+	public Pasajero findById(int id) {
+	    return pasajeroRepository.findById(id).get();
 	}
+
 
 }
