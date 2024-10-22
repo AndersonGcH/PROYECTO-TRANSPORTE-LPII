@@ -9,9 +9,7 @@ body {
 
 /* Header */
 .nav-cliente {
-	background: url('/images/layout_img/pattern_h.png');
-    margin: 0;
-    text-align: center;
+    background-color: #333;
     color: white;
     padding: 15px 0;
     display: flex;
@@ -139,8 +137,7 @@ body {
 
 /* Footer */
 .footer-class {
-	background: url('/images/layout_img/pattern_h.png');
-    margin: 0;
+    background-color: #333;
     color: white;
     padding: 20px 0;
     text-align: center;
