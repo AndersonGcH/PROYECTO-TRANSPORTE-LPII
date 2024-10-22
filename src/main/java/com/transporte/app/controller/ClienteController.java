@@ -2,6 +2,7 @@ package com.transporte.app.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,11 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.transporte.app.entity.Destino;
 import com.transporte.app.entity.DetalleVentaPasaje;
-import com.transporte.app.entity.Pasajero;
+
+import com.transporte.app.entity.Usuario;
 import com.transporte.app.entity.VentaPasaje;
 import com.transporte.app.entity.Viaje;
 import com.transporte.app.services.DestinoService;
-import com.transporte.app.services.PasajeroService;
+import com.transporte.app.services.DetalleVentaPasajeService;
+
+import com.transporte.app.services.UsuarioService;
+import com.transporte.app.services.VentaPasajeService;
 import com.transporte.app.services.ViajeService;
 
 @Controller
@@ -33,8 +38,14 @@ public class ClienteController {
     private DestinoService destinoService;
     @Autowired
     private ViajeService viajeService;
+  
     @Autowired
-    private PasajeroService pasajeroService;
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private VentaPasajeService ventaPasajeService;
+    @Autowired
+    private DetalleVentaPasajeService detalleVentaPasajeService;
     
     List<DetalleVentaPasaje> detalles=new ArrayList<DetalleVentaPasaje>();
 
@@ -163,7 +174,7 @@ public class ClienteController {
     
     @GetMapping("/order")
     public String order(Model model) {
-    	Pasajero pasajero = pasajeroService.findById(1);
+    	Usuario pasajero = usuarioService.findById(2);
 
         model.addAttribute("cart", detalles);
         model.addAttribute("venta", venta);
@@ -171,6 +182,37 @@ public class ClienteController {
         return "cliente/resumenorden";
     }
     
+    @GetMapping("/saveVenta")
+    public String saveVenta() {
+        Date fechaCreacion = new Date();
+        venta.setUsuario(usuarioService.findById(1)); // Obtener usuario actual
+        venta.setFechaVenta(fechaCreacion);
+        venta.setNumero(ventaPasajeService.generarNumeroOrden());
+       
+        
+        // Calcular total de la venta
+        double total = 0;
+        for (DetalleVentaPasaje dt : detalles) {
+            if (dt.getPrecio() != 0 && dt.getCantidad() != 0) {
+                total += dt.getPrecio() * dt.getCantidad(); // Calcular el total
+                dt.setVentaPasaje(venta); // Asocia el detalle con la venta
+            }
+        }
+        venta.setTotal(total); // Establecer el total en la venta
+        
+        // Aquí añadimos los detalles a la venta
+        venta.setDetalles(detalles);
+        
+        // Guarda la venta
+        ventaPasajeService.save(venta);
+        
+        // Reiniciar la venta y los detalles para la siguiente transacción
+        venta = new VentaPasaje();
+        detalles.clear();
+        
+        return "redirect:/";
+    }
+
     
 
 

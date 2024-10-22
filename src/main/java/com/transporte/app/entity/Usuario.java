@@ -21,6 +21,7 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	
 	@Column(name = "nombres")
 	private String nombres;
 	
@@ -33,9 +34,18 @@ public class Usuario {
 	@Column(name = "clave")
 	private String clave;
 	
+	@Column(name = "correo", nullable = false)
+	private String correo;
+
+    @Column(name = "direccion")
+    private String direccion;
+
+	
 	@ManyToOne
 	@JoinColumn(name= "idrol")
 	private Rol rol;
+	
+	
 	
 	public Usuario() {
 		
