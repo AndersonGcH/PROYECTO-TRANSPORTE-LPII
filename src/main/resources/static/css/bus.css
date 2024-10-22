@@ -10,11 +10,11 @@
 	height: 100vh;
 }
 
-.custom-card {
+.custom-card { 
     background: url('/images/layout_img/pattern.png');
     background-color: #f2f2f2;
     padding: 10px;
-    border-radius: 15px;    
+    border-radius: 15px;
 }
 
 .tit {
