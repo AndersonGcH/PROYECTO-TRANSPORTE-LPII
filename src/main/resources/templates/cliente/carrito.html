@@ -19,14 +19,14 @@
 <body>
 
     <!-- Navigation -->
-    <div th:include="cliente/template_home.html::header"></div>
+    <div th:include="/cliente/template_home.html::header"></div>
 
     <!-- Page Content -->
     <div class="container">
 
         <!-- Page Heading/Breadcrumbs -->
         <h1 class="mt-4 mb-3">
-            Spring eCommerce <small>Carrito</small>
+        	<small>Carrito</small>
         </h1>
 
         <ol class="breadcrumb">
@@ -84,7 +84,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <div th:include="cliente/template_home.html::footer"></div>
+    <div th:include="/cliente/template_home.html::footer"></div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>
