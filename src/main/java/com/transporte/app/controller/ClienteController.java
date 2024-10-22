@@ -2,6 +2,7 @@ package com.transporte.app.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,160 +19,184 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.transporte.app.entity.Destino;
 import com.transporte.app.entity.DetalleVentaPasaje;
-import com.transporte.app.entity.Pasajero;
+import com.transporte.app.entity.Usuario;
 import com.transporte.app.entity.VentaPasaje;
 import com.transporte.app.entity.Viaje;
 import com.transporte.app.services.DestinoService;
-import com.transporte.app.services.PasajeroService;
+import com.transporte.app.services.DetalleVentaPasajeService;
+import com.transporte.app.services.UsuarioService;
+import com.transporte.app.services.VentaPasajeService;
 import com.transporte.app.services.ViajeService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ClienteController {
-	
-	private final Logger log = LoggerFactory.getLogger(ClienteController.class);
+
+    private final Logger log = LoggerFactory.getLogger(ClienteController.class);
+
     @Autowired
     private DestinoService destinoService;
+
     @Autowired
     private ViajeService viajeService;
+
     @Autowired
-    private PasajeroService pasajeroService;
-    
-    List<DetalleVentaPasaje> detalles=new ArrayList<DetalleVentaPasaje>();
+    private UsuarioService usuarioService;
 
+    @Autowired
+    private VentaPasajeService ventaPasajeService;
+
+    @Autowired
+    private DetalleVentaPasajeService detalleVentaPasajeService;
+
+    // Lista de detalles de compra
+    List<DetalleVentaPasaje> detalles = new ArrayList<>();
     VentaPasaje venta = new VentaPasaje();
-    @GetMapping("/cliente")
-    public String cliente(Model model) {
-        List<Destino> destinos = destinoService.getAllDestinos();
-        model.addAttribute("destinos", destinos);
-        return "cliente/home";
-	}
 
+    // 1. Mostrar destinos sin autenticación (acceso público)
+   
+
+    // 2. Mostrar viajes por destino (acceso público)
     @GetMapping("/destinohome/{idDestino}")
     public String listarViajesPorDestino(@PathVariable Integer idDestino, Model model) {
         List<Viaje> viajes = viajeService.findViajesByDestinoId(idDestino);
-        Destino destino = destinoService.findById(idDestino); // Asegúrate de tener un servicio para obtener el destino por ID
+        Destino destino = destinoService.findById(idDestino);
         model.addAttribute("viajes", viajes);
         model.addAttribute("nombreDestino", destino.getNombre());
-        return "cliente/destinohome"; 
+        return "cliente/destinohome"; // Vista con los viajes del destino
     }
-    
-    @GetMapping("/viaje/{idViaje}") // Cambia {id} por {idViaje}
+
+    // 3. Detalles de un viaje (acceso público)
+    @GetMapping("/viaje/{idViaje}")
     public String infoviaje(@PathVariable Integer idViaje, Model model) {
-        log.info("Id Viaje enviado como parametro: {}", idViaje); // Usa {} para el log
-        Viaje viaje = viajeService.findViajeById(idViaje); // No es necesario crear un nuevo objeto Viaje
-        if (viaje != null) { // Verifica si el viaje existe
+        log.info("Id Viaje enviado como parametro: {}", idViaje);
+        Viaje viaje = viajeService.findViajeById(idViaje);
+        if (viaje != null) {
             model.addAttribute("viaje", viaje);
-            return "cliente/infoviaje";
+            return "cliente/infoviaje"; // Vista con la información del viaje
         } else {
-            // Manejar el caso donde el viaje no se encuentra
-            return "error"; // Redirige a una página de error o muestra un mensaje apropiado
+            return "error"; // En caso de que no se encuentre el viaje
         }
     }
-    
+
+    // 4. Agregar viaje al carrito (requiere autenticación)
     @PostMapping("/infoviaje")
-    public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model) {
+    public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model, HttpSession session) {
+        Long idUsuario = (Long) session.getAttribute("idusuario");
+
+        // Verificar si el usuario está autenticado
+        if (idUsuario == null) {
+            return "redirect:/login"; // Redirigir a login si no está autenticado
+        }
+
         DetalleVentaPasaje detalleVenta = new DetalleVentaPasaje();
         double sumaTotal = 0;
 
-        // Obtener el viaje opcionalmente
         Optional<Viaje> optionalViaje = Optional.ofNullable(viajeService.findViajeById(id));
-
-        // Verificar si el viaje está presente
         if (optionalViaje.isPresent()) {
-            Viaje viaje = optionalViaje.get(); // Obtener el viaje
-
-            log.info("Viaje añadido: {}", viaje); // Aquí registras el objeto completo
+            Viaje viaje = optionalViaje.get();
+            log.info("Viaje añadido: {}", viaje);
             log.info("Cantidad: {}", cantidad);
 
-            // Verificar si el viaje ya está en el carrito
             boolean viajeExistente = false;
             for (DetalleVentaPasaje detalle : detalles) {
                 if (detalle.getViaje().getIdViaje().equals(viaje.getIdViaje())) {
-                    detalle.setCantidad(detalle.getCantidad() + cantidad); // Aumentar la cantidad
+                    detalle.setCantidad(detalle.getCantidad() + cantidad);
                     detalle.setTotal(detalle.getPrecio() * detalle.getCantidad());
                     viajeExistente = true;
                     break;
                 }
             }
 
-            // Si el viaje no estaba en el carrito, agregarlo como nuevo
             if (!viajeExistente) {
                 detalleVenta.setViaje(viaje);
                 detalleVenta.setCantidad(cantidad);
                 detalleVenta.setPrecio(viaje.getPrecio());
-                detalleVenta.setTotal(detalleVenta.getPrecio() * cantidad); // Multiplicación directa
+                detalleVenta.setTotal(detalleVenta.getPrecio() * cantidad);
                 detalles.add(detalleVenta);
             }
 
-            // Actualizar sumaTotal
             sumaTotal = detalles.stream()
-                    .mapToDouble(dt -> dt.getTotal() != 0.0 ? dt.getTotal() : 0.0) // Asegúrate de que getTotal() devuelve un double
+                    .mapToDouble(dt -> dt.getTotal() != 0.0 ? dt.getTotal() : 0.0)
                     .sum();
 
-            // Asignar el total a la venta
             venta.setTotal(sumaTotal);
         } else {
             log.error("No se encontró el viaje con ID: {}", id);
-            // Manejo de error: podrías redirigir a una página de error o mostrar un mensaje
         }
 
         model.addAttribute("cart", detalles);
         model.addAttribute("venta", venta);
+        return "cliente/carrito"; // Mostrar el carrito de compras
+    }
+ 
+    @GetMapping("/getCart")
+    public String getCart(Model model) {
+    	  model.addAttribute("cart", detalles);
+          model.addAttribute("venta", venta);
         return "cliente/carrito";
     }
     
-    @GetMapping("/delete/cart/{id}")
-    public String deleteViaje(@PathVariable Integer id, Model model) {
-        // Verifica que detalles esté inicializado y no sea nulo
-        if (detalles != null) {
-            // Filtra los detalles, excluyendo el que se desea eliminar
-            List<DetalleVentaPasaje> detalleventaPasaje = detalles.stream()
-                    .filter(detalleVenta -> !detalleVenta.getViaje().getIdViaje().equals(id))
-                    .collect(Collectors.toList());
+    // 5. Finalizar compra (requiere autenticación)
+    @GetMapping("/order")
+    public String order(Model model, HttpSession session) {
+        Long idUsuario = (Long) session.getAttribute("idusuario");
 
-            // Actualiza la lista de detalles
-            detalles = detalleventaPasaje;
-
-            // Calcula el total
-            double sumaTotal = detalles.stream()
-                    .mapToDouble(DetalleVentaPasaje::getTotal)
-                    .sum();
-
-            // Asigna el total a la venta
-            if (venta != null) {
-                venta.setTotal(sumaTotal);
-            } else {
-                // Si 'venta' es null, crea una nueva instancia o maneja el caso
-                venta = new VentaPasaje();
-                venta.setTotal(sumaTotal);
-            }
-
-            // Agrega los detalles y la venta al modelo
-            model.addAttribute("cart", detalles);
-            model.addAttribute("venta", venta);
-        } else {
-            // Manejo si detalles es nulo (opcional)
-            model.addAttribute("cart", Collections.emptyList());
+        // Verificar si el usuario está autenticado
+        if (idUsuario == null) {
+            return "redirect:/login"; // Redirigir a login si no está autenticado
         }
 
-        // Redirige a la vista del carrito
-        return "cliente/carrito"; // Asegúrate de que esta vista esté correctamente configurada
-    }
-
- 
-
-    
-    @GetMapping("/order")
-    public String order(Model model) {
-    	Pasajero pasajero = pasajeroService.findById(1);
-
+        Usuario pasajero = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString()));
         model.addAttribute("cart", detalles);
         model.addAttribute("venta", venta);
-        model.addAttribute("pasajero",pasajero);
-        return "cliente/resumenorden";
+        model.addAttribute("pasajero", pasajero);
+        return "cliente/resumenorden"; // Mostrar resumen de la orden
     }
-    
-    
 
+    // 6. Guardar venta (requiere autenticación)
+    @GetMapping("/saveVenta")
+    public String saveVenta(HttpSession session) {
+        Long idUsuario = (Long) session.getAttribute("idusuario");
 
+        // Verificar si el usuario está autenticado
+        if (idUsuario == null) {
+            return "redirect:/login"; // Redirigir a login si no está autenticado
+        }
+
+        Date fechaCreacion = new Date();
+        venta.setUsuario(usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())));
+        venta.setFechaVenta(fechaCreacion);
+        venta.setNumero(ventaPasajeService.generarNumeroOrden());
+
+        double total = 0;
+        for (DetalleVentaPasaje dt : detalles) {
+            if (dt.getPrecio() != 0 && dt.getCantidad() != 0) {
+                total += dt.getPrecio() * dt.getCantidad();
+                dt.setVentaPasaje(venta);
+            }
+        }
+        venta.setTotal(total);
+        venta.setDetalles(detalles);
+
+        ventaPasajeService.save(venta);
+        venta = new VentaPasaje();
+        detalles.clear();
+
+        return "redirect:/";
+    }
+
+    // 7. Ver compras del usuario (requiere autenticación)
+    @GetMapping("/compras")
+    public String obtenerCompras(Model model, HttpSession session) {
+        Long idUsuario = (Long) session.getAttribute("idusuario");
+
+        // Verificar si el usuario está autenticado
+        if (idUsuario == null) {
+            return "redirect:/login"; // Redirigir a login si no está autenticado
+        }
+
+        return "cliente/compras"; // Mostrar compras del usuario
+    }
 }

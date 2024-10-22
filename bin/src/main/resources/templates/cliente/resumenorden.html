@@ -22,7 +22,11 @@
 <body>
 
   <!-- Navigation -->
+<<<<<<< HEAD
   <div th:include="cliente/template_home.html::header"></div>
+=======
+  <div th:include="/cliente/template_home.html::header"></div>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
 
 
     <!-- Page Content -->
@@ -48,7 +52,11 @@
               <h5 class="card-title">
                 DATOS ORDEN
               </h5>
+<<<<<<< HEAD
               <h6 th:text="'Nombre  :'+${pasajero.nombre}"></h6>
+=======
+              <h6 th:text="'Nombre  :'+${pasajero.nombres}"></h6>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
               <h6 th:text="'Correo  :'+${pasajero.correo}"></h6>
               <h6 th:text="'Direccion  :'+${pasajero.direccion}"></h6>
 
@@ -59,6 +67,11 @@
                 <table class="table">
                   <thead>
                     <tr>
+<<<<<<< HEAD
+=======
+                    
+                      <th scope="col">CodigoViaje</th>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
                       <th scope="col">Producto</th>
                       <th scope="col">Precio</th>
                       <th scope="col">Cantidad</th>
@@ -67,6 +80,10 @@
                   </thead>
                   <tbody>
                     <tr th:each="dventa :${cart}">
+<<<<<<< HEAD
+=======
+                     <td th:text="${dventa.viaje.IdViaje}"></td>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
                      <td th:text="${dventa.viaje.idDestino.nombre}"></td>
                      <td th:text="${dventa.precio}"></td>
                      <td th:text="${dventa.cantidad}"></td>
@@ -85,7 +102,12 @@
 
           <ul class="list-group">
             <li class="list-group-item"><h5 th:text="'Total  :'+${venta.total}"> </h5></li>
+<<<<<<< HEAD
             <a href="#" class="btn btn-dark">Generar</a>
+=======
+              <a th:href="@{/saveVenta}" class="btn btn-dark">Generar</a>
+
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
           </ul>
         </div>
       </div>

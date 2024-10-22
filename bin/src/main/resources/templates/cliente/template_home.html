@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
 
 <head>
 
@@ -68,11 +69,65 @@
 
 
     <!-- Footer -->
+=======
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BusExpress</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+    <link href="/css/cliente.css" rel="stylesheet">
+</head>
+<body class="cliente-container">
+    <!-- Navigation -->
+    <div th:fragment="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-cliente">
+            <div class="container">
+                <a class="navbar-brand" href="#">BusExpress</a>
+                <form class="form-inline my-1 my-lg-2" method="post" action="#">
+                    <input class="form-control mr-sm-4" type="search" placeholder="Buscar" aria-label="Search" name="nombre" autocomplete="off">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/carrito">Carrito</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Footer -->
+    <div th:fragment="footer">
+        <footer class="py-4 bg-dark footer-class">
+            <div class="container">
+                <p class="m-0 text-center text-white">&copy; [[${#dates.format(new java.util.Date(), 'yyyy')}]] Designed by William. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
 
   </body>
 
   </html>
+=======
+</body>
+</html>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864

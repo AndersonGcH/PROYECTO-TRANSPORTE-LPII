@@ -6,27 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Spring eCommerce</title>
+    <title>Carrito</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/heroic-features.css" rel="stylesheet">
+    <link href="/css/cliente.css" rel="stylesheet">
 
 </head>
 
 <body>
 
     <!-- Navigation -->
-    <div th:include="cliente/template_home.html::header"></div>
+    <div th:include="/cliente/template_home.html::header"></div>
 
     <!-- Page Content -->
     <div class="container">
 
         <!-- Page Heading/Breadcrumbs -->
         <h1 class="mt-4 mb-3">
-            Spring eCommerce <small>Carrito</small>
+        	<small>Carrito</small>
         </h1>
 
         <ol class="breadcrumb">
@@ -81,10 +82,11 @@
             </div>
         </div>
     </div>
+    
     <!-- /.container -->
 
     <!-- Footer -->
-    <div th:include="cliente/template_home.html::footer"></div>
+    <div th:include="/cliente/template_home.html::footer"></div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>

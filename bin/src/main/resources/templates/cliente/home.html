@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
 
 <head>
 
@@ -58,11 +59,62 @@
     <!-- Footer -->
     <div th:include="cliente/template_home.html::footer"></div>
 
+=======
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BusExpress</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/cliente.css" rel="stylesheet">
+</head>
+<body class="cliente-body">
+    <!-- Navigation -->
+    <div th:include="/cliente/template_home.html::header"></div>
+
+    <!-- Page Content -->
+    <div class="cliente-container">
+        <!-- Jumbotron Header -->
+        <header class="cliente-jumbotron jumbotron my-0 text-center">
+            <h1 class="cliente-title">Bienvenido a BusExpress</h1>
+            <p class="cliente-lead lead">Tu tienda de viajes en línea</p>
+        </header>
+
+        <!-- Page Features -->
+        <div class="d-flex justify-content-center flex-wrap">
+            <div class="cliente-card-container col-lg-3 col-md-6 mb-4" th:each="destino: ${destinos}">
+                <div class="cliente-card card h-100">
+                    <div class="cliente-card-img img">
+                    <img class="card-img-top" th:src="@{/images/{img} (img=${destino.imagen})}" alt="">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text cliente-text" th:text="${destino.nombre}"></p>
+                    </div>
+                    <!-- Pie de la tarjeta con botón -->
+                    <div class="card-footer cliente-footer">
+                        <a th:href="@{/destinohome/{id} (id=${destino.idDestino})}" class="btn btn-success">Ver viajes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:include="/cliente/template_home.html::footer"></div>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
 
   </body>
 
   </html>
+=======
+</body>
+</html>
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864

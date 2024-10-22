@@ -10,6 +10,68 @@
 	height: 100vh;
 }
 
+.custom-card { 
+    background: url('/images/layout_img/pattern.png');
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.tit {
+	background: url('/images/layout_img/pattern_h.png');
+    background-color: rgb(0, 170 ,290, 0.6);
+    padding: 0 10px 0 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.full{
+	background: url('/images/layout_img/pattern_h.png');
+}
+
+.footer-container {
+    background-color: #151315;
+    color: white;
+}
+
+.footer p {
+	background: url('/images/layout_img/pattern_h.png');
+	color: white;
+    margin: 0;
+    text-align: center;
+}
+
+custom-background {
+    background: url('/images/background.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.inner_page {
+    background: rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 2;
+}
+
+.full_container, .inner_container, #content {
+    background: transparent;
+}
+
+
+.inner_page{
+	background: -webkit-linear-gradient(90deg, #e6b70e,#c29e6c,#d1c2aa);
+	background: linear-gradient(90deg, #e6b70e,#c29e6c,#d1c2aa);
+	background-image: url('/images/Bus.jpg'); 
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
 .bg-primary{
 	background-image: url('/images/Bus_login.jpg');
 	background-size: cover;
@@ -20,6 +82,9 @@
 	height: 100vh;
 }
 
+<<<<<<< HEAD
 .mb-4{
 	opacity: 0.9;
 }
+=======
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864

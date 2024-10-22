@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS BDTransporte;
 Create Database BDTransporte;
 use BDTransporte;
 
@@ -95,6 +96,7 @@ VALUES ('Volvo 9700', 'Volvo', 2020, 50, 'ABC-123');
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
 (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones')
 
@@ -115,6 +117,8 @@ INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, obser
 VALUES (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
 >>>>>>> branch 'main' of https://github.com/AndersonGcH/PROYECTO-TRANSPORTE-LPII.git
 =======
+=======
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
 INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
 (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
 
@@ -129,4 +133,15 @@ INSERT INTO tb_destino (id_destino, nombre_des, imagen) VALUES
 (8, 'Montaña de Colores', 'Destino_MontanaColores.jpg'),
 (9, 'Tambopata', 'Destino_Tambopata.jpg'),
 (10, 'Cañón del Colca', 'Destino_CanonDelColca.jpg');
+<<<<<<< HEAD
 >>>>>>> branch 'main' of https://github.com/AndersonGcH/PROYECTO-TRANSPORTE-LPII.git
+=======
+
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) 
+VALUES (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
+(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+
+
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864

@@ -21,4 +21,5 @@ public interface ViajeService {
 
 	public List<Viaje> findViajesByDestinoId(Integer idDestino);
 
+	
 }

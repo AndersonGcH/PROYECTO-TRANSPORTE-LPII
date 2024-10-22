@@ -10,7 +10,7 @@ import com.transporte.app.entity.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
-	@Query(value="SELECT u.idusuario,u.usuario,u.nombres,u.apellidos,u.clave,u.idrol "
+	@Query(value="SELECT u.idusuario,u.usuario,u.nombres,u.apellidos,u.clave,u.idrol,u.correo,u.direccion "
 			+ "FROM usuario u where u.usuario = :usuario and u.clave = :clave",nativeQuery = true)
 	public Usuario findByUsuarioAndClave(@Param("usuario") String usuario,@Param("clave") String clave);
 }
