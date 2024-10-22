@@ -130,7 +130,14 @@ public class ClienteController {
         model.addAttribute("venta", venta);
         return "cliente/carrito"; // Mostrar el carrito de compras
     }
-
+ 
+    @GetMapping("/getCart")
+    public String getCart(Model model) {
+    	  model.addAttribute("cart", detalles);
+          model.addAttribute("venta", venta);
+        return "cliente/carrito";
+    }
+    
     // 5. Finalizar compra (requiere autenticación)
     @GetMapping("/order")
     public String order(Model model, HttpSession session) {
