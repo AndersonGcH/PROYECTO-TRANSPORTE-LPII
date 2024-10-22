@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS BDTransporte;
 Create Database BDTransporte;
 use BDTransporte;
 
@@ -93,28 +94,6 @@ values('Paco','Gonzales','admin','12345',1),
 INSERT INTO tb_bus (modelo, marca, anio, capacidad, placa)
 VALUES ('Volvo 9700', 'Volvo', 2020, 50, 'ABC-123');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
-(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones')
-
-INSERT INTO tb_destino (id_destino, nombre_des, imagen) VALUES
-(1, 'Huacachina', 'Destino_HuacaChina.jpg'),
-(2, 'Cuzco', 'Destino_MachuPicchu.jpg'),
-(3, 'Arequipa', 'Destino_Arequipa.jpg'),
-(4, 'Huascarán', 'Destino_Huascaran.jpg'),
-(5, 'Lago Titicaca', 'Destino_LagoTiticaca.jpg'),
-(6, 'Líneas de Nazca', 'Destino_LineasNazca.jpg'),
-(7, 'Máncora', 'Destino_Mancora.jpg'),
-(8, 'Montaña de Colores', 'Destino_MontanaColores.jpg'),
-(9, 'Tambopata', 'Destino_Tambopata.jpg'),
-(10, 'Cañón del Colca', 'Destino_CanonDelColca.jpg');
-
-=======
-INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) 
-VALUES (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
->>>>>>> branch 'main' of https://github.com/AndersonGcH/PROYECTO-TRANSPORTE-LPII.git
-=======
 INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
 (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
 
@@ -129,4 +108,11 @@ INSERT INTO tb_destino (id_destino, nombre_des, imagen) VALUES
 (8, 'Montaña de Colores', 'Destino_MontanaColores.jpg'),
 (9, 'Tambopata', 'Destino_Tambopata.jpg'),
 (10, 'Cañón del Colca', 'Destino_CanonDelColca.jpg');
->>>>>>> branch 'main' of https://github.com/AndersonGcH/PROYECTO-TRANSPORTE-LPII.git
+
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) 
+VALUES (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
+(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+
+
