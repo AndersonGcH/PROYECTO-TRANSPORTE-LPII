@@ -13,12 +13,14 @@ import com.transporte.app.services.DestinoService;
 import com.transporte.app.services.RolService;
 import com.transporte.app.services.UsuarioService;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UsuarioController {
+    
     @Autowired
     private UsuarioService usuarioService;
 
@@ -28,78 +30,97 @@ public class UsuarioController {
     @Autowired
     private DestinoService destinoService;
 
+    private final Long temporaryUserId = 1L; // ID del usuario temporal
+    private final String temporaryUserName = "Usuario Temporal"; // Nombre del usuario temporal
+
+    @PostConstruct
+    public void init() {
+        // Inicializa el usuario temporal al inicio
+        HttpSession session = getSession();
+        if (session != null) {
+            session.setAttribute("idusuario", temporaryUserId);
+            session.setAttribute("nombreUsuario", temporaryUserName); // Almacena el nombre del usuario temporal
+        }
+    }
+
+    private HttpSession getSession() {
+        // Método para obtener la sesión actual
+        // Este método no se puede utilizar directamente en el controlador
+        // se debe manejar en cada método donde se necesite la sesión
+        return null; // Deja esto aquí, se manejará de otra manera
+    }
+
     @GetMapping("/cliente")
     public String mostrarDestinos(Model model) {
         model.addAttribute("destinos", destinoService.getAllDestinos());
-        return "cliente/home"; // Update the return statement to the correct template path
+        return "cliente/home"; // Retorna la plantilla correcta
     }
-
 
     // Redirigir a la página home del cliente
     @GetMapping("/")
     public String clientehome() {
         return "redirect:/cliente"; // Redirigir a la página de destinos públicos
     }
+
     @GetMapping("/login")
     public String mostrarLogin(Model model) {
-        // Logic to show the login page
-        return "login"; // Return the view for the login page
+        return "login"; // Retorna la vista para la página de inicio de sesión
     }
+
     @PostMapping("/login")
     public String iniciarSesion(Model model, @ModelAttribute("usuario") Usuario usuario, HttpSession session) {
-        String pagina = ""; // Default redirect to client home page
         Usuario usuarioAutenticado = usuarioService.login(usuario);
 
         if (usuarioAutenticado != null) {
-            // Save the authenticated user in session
+            // Guarda el usuario autenticado en la sesión
             session.setAttribute("idusuario", usuarioAutenticado.getId());
+            session.setAttribute("nombreUsuario", usuarioAutenticado.getNombres());
 
-            // Check the user's role
+            // Redirige según el rol del usuario
             if ("Administrador".equals(usuarioAutenticado.getRol().getDescripcion())) {
-                model.addAttribute("usuarios", usuarioService.getAllUsuario());
-                model.addAttribute("rolList", rolService.getAllRol());
                 return "redirect:/administrador/index";
-                // Administrators also see the client home page by default
             }
-            // Both admin and client go to the same home page
+            return "redirect:/cliente"; // Redirigir a la página de cliente
         } else {
-            // Show error message in case of failed authentication
             model.addAttribute("error", "Usuario o contraseña incorrecta");
-            pagina = "error"; // Redirect to an error page
+            return "login"; // Volver a la página de login con error
         }
-
-        return pagina;
     }
 
-
-    
     @PostMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            session.invalidate();
+            session.invalidate(); // Invalida la sesión
         }
-        return "redirect:/";
+        return "redirect:/"; // Redirigir a la página de inicio
     }
+
     @GetMapping("/registro")
     public String create() {
-    	
-    	
-        return "registro";
+        return "registro"; // Retornar la vista de registro
     }
-    
+
     @PostMapping("/save")
     public String save(Usuario usuario) {
-      
-        // Busca el rol de cliente (con id = 2) en la base de datos
-        Rol rolCliente = rolService.findById(2); // rolService es un servicio que debe estar disponible para obtener los roles
-        
-        // Asigna el rol de cliente al usuario
-        usuario.setRol(rolCliente);
-        
-        // Guarda el usuario (lógica de guardado no mostrada)
-        usuarioService.saveUsuarioCliente(usuario); // Asegúrate de que tu usuarioService esté definido
+        Rol rolCliente = rolService.findById(2); // Obtiene el rol de cliente
+        usuario.setRol(rolCliente); // Asigna el rol al usuario
+        usuarioService.saveUsuarioCliente(usuario); // Guarda el usuario
+        return "redirect:/"; // Redirigir a la página de inicio
+    }
 
-        return "redirect:/";
+    // Lógica para manejar las compras
+    @GetMapping("/comprar")
+    public String comprar(HttpSession session, Model model) {
+        Long idUsuario = (Long) session.getAttribute("idusuario");
+
+        if (idUsuario == null || idUsuario.equals(temporaryUserId)) {
+            // Si el usuario no está autenticado o es el temporal, redirigir a login
+            model.addAttribute("error", "Debes registrarte o iniciar sesión para realizar una compra.");
+            return "login"; // Redirigir a la página de login
+        }
+
+        // Aquí va la lógica de compra si el usuario es válido
+        return "compra"; // Redirigir a la página de compra
     }
 }
