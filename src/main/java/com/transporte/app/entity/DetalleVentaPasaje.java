@@ -9,13 +9,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Setter
 @Getter
+@Table(name = "detalle_venta_pasaje")
 public class DetalleVentaPasaje {
+	
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private int idDetalle;
@@ -39,4 +42,6 @@ public class DetalleVentaPasaje {
 
 	    @Column(name = "total", nullable = false)
 	    private double total;
+	    
+	
 }

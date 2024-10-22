@@ -11,4 +11,6 @@ public interface UsuarioService {
 	public List<Usuario> getAllUsuario();
 	
 	public Usuario login(Usuario usuario);
+	
+	public Usuario findById(long id) ;
 }

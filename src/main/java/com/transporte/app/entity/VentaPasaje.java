@@ -21,30 +21,30 @@ import lombok.Setter;
 @Setter
 @Entity
 public class VentaPasaje {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int idVenta;
-	    
-	    @ManyToOne
-	    @JoinColumn(name = "id_usuario", nullable = false)
-	    private Usuario usuario;  // Relación con Usuario
-	    
-	    @ManyToOne
-	    @JoinColumn(name = "id_pasajero", nullable = false)
-	    private Pasajero pasajero;  // Relación con Pasajero
-	    
-	    @Column(name = "fecha_venta", nullable = false)
-	    @Temporal(TemporalType.TIMESTAMP)
-	    private Date fechaVenta;
-	    
-	    @Column(name = "total", nullable = false)
-	    private double total;
-	    
-	    @Column(name = "estado", length = 50, nullable = false)
-	    private String estado;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idVenta;
 
-	    // Relación con DetalleVentaPasaje
-	    @OneToMany(mappedBy = "ventaPasaje", cascade = CascadeType.ALL)
-	    private List<DetalleVentaPasaje> detalles;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = true)  // Cambiado a nullable = true
+    private Usuario usuario;  // Relación con Usuario
+    
+    
+    @Column(name = "fecha_venta", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaVenta;
+    
+    @Column(name = "total", nullable = false)
+    private double total;
 
+    @Column(name = "estado", length = 50, nullable = true)  // Cambiado a nullable = true
+    private String estado;
+
+    // Relación con DetalleVentaPasaje
+    @OneToMany(mappedBy = "ventaPasaje", cascade = CascadeType.ALL)
+    private List<DetalleVentaPasaje> detalles;
+    
+    @Column(name = "numero", nullable = false)
+    private String numero; // Atributo de tipo String
 }
+
