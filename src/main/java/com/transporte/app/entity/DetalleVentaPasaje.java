@@ -30,9 +30,7 @@ public class DetalleVentaPasaje {
 	    @ManyToOne
 	    @JoinColumn(name = "id_viaje", nullable = false)
 	    private Viaje viaje;  // Relación con Viaje
-	    
-	    @Column(name = "asiento", nullable = false)
-	    private int asiento;
+	   
 	    
 	    @Column(name = "precio", nullable = false)
 	    private double precio; 

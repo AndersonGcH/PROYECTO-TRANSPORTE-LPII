@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.transporte.app.entity.Usuario;
 import com.transporte.app.entity.VentaPasaje;
 import com.transporte.app.repository.VentaPasajeRepository;
 import com.transporte.app.services.VentaPasajeService;
@@ -54,6 +55,12 @@ public class VentaPasajeServiceImpl implements VentaPasajeService{
 			
 		}
 		return numeroConcatenado;
+	}
+
+	@Override
+	public List<VentaPasaje> findByUsuarioId(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return ventapasajeRepository.findByUsuarioId(usuario);
 	}
 
 }

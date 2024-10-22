@@ -13,4 +13,5 @@ public interface UsuarioService {
 	public Usuario login(Usuario usuario);
 	
 	public Usuario findById(long id) ;
+	public Usuario saveUsuarioCliente (Usuario usuario);
 }
