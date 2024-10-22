@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Detalles del viaje">
+  <meta name="author" content="TuNombre">
+
+  <title>Detalles del Viaje</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/heroic-features.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <!-- Incluyendo el header desde la plantilla -->
+  <div th:include="cliente/template_home.html :: header"></div>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+      Spring eCommerce <small>Detalles del Viaje</small>
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Detalles del Viaje</li>
+    </ol>
+
+    <!-- Información del Viaje -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <!-- Imagen del viaje -->
+             <a href="#">
+              <img class="img-fluid rounded" th:src="@{/images/{img}(img=${viaje.idDestino.imagen})}" alt="Imagen del viaje">
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <form th:action="@{/infoviaje}" method="POST">
+
+            <input type="hidden" th:value="${viaje.idViaje}" name="id">
+              <!-- Nombre del viaje -->
+              <h2 class="card-title" th:text="${viaje.idDestino.nombre}">Nombre del Viaje</h2>
+
+              <ul class="list-group">
+                <!-- Precio del viaje -->
+                <li class="list-group-item">
+                  <h5>Precio: </h5>
+                  <span th:text="${viaje.precio}">Precio del viaje</span>
+                </li>
+
+                <!-- Descripción del viaje -->
+              
+ 				 <li class="list-group-item">
+                  <p>Asientos Disponibles: </p>
+                  <p th:text="${viaje.idBus.capacidad}">Descripción del viaje</p>
+                </li>
+              
+
+                <!-- Origen y destino del viaje -->
+               
+                <li class="list-group-item">
+                  <h6>Destino: </h6>
+                  <span th:text="${viaje.IdDestino.nombre}">Ciudad de destino</span>
+                </li>
+
+                <!-- Fechas del viaje -->
+                <li class="list-group-item">
+                  <h6>Fecha de Salida: </h6>
+                  <span th:text="${viaje.fechaSalida}">Fecha de salida</span>
+                </li>
+                <li class="list-group-item">
+                  <h6>Fecha de Llegada: </h6>
+                  <span th:text="${viaje.fechaLlegada}">Fecha de llegada</span>
+                </li>
+
+                <!-- Cantidad de asientos -->
+                <li class="list-group-item">
+                  <h6>
+                    Cantidad Pasajes: <input type="number" id="cantidad" name="cantidad" autocomplete="off"
+                    min="1" max="5" value="1">
+                  </h6>
+                </li>
+              </ul>
+
+              <!-- Botón para añadir al carrito -->
+              <button name="id" type="submit" class="btn btn-dark">Añadir al carrito</button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <!-- Incluyendo el footer desde la plantilla -->
+  <div th:include="cliente/template_home.html :: footer"></div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

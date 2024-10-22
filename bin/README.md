@@ -25,6 +25,17 @@ create table tb_bus(
     placa VARCHAR(20)
 );
 
+CREATE TABLE tb_revision (
+    revision_id INT PRIMARY KEY AUTO_INCREMENT not null,
+    id_bus INT,
+    fecha_revision DATE,
+    tipo_revision VARCHAR(50),
+    resultado VARCHAR(50),
+    observaciones VARCHAR(50),
+    FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus)
+);
+
+
 create TABLE personal (
     id_personal INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -39,7 +50,8 @@ create TABLE personal (
 
 CREATE TABLE tb_destino (
   id_destino INT AUTO_INCREMENT PRIMARY KEY,
-  nombre_des VARCHAR(100)
+  nombre_des VARCHAR(100),
+  imagen varchar(255)
 );
 
 CREATE TABLE tb_cliente (
@@ -61,14 +73,15 @@ CREATE TABLE tb_pasaje (
 );
 
 CREATE TABLE tb_viaje (
-  id_viaje INT AUTO_INCREMENT PRIMARY KEY,
-  id_bus INT,
-  id_destino INT,
-  fech_sal DATETIME,
-  fech_lle DATETIME,
-  incidencias VARCHAR(40),
-  FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus),
-  FOREIGN KEY (id_destino) REFERENCES tb_destino(id_destino)
+    id_viaje INT AUTO_INCREMENT PRIMARY KEY,
+    id_bus INT NOT NULL,
+    id_destino INT NOT NULL,
+    fech_sal DATE NOT NULL,
+    fech_lle DATE NOT NULL,
+    incidencias VARCHAR(40),
+    precio DOUBLE NOT NULL,
+    FOREIGN KEY (id_bus) REFERENCES tb_bus(id_bus),
+    FOREIGN KEY (id_destino) REFERENCES tb_destino(id_destino)
 );
 
 insert into rol (descripcion) values ('Administrador'),('Cliente');
@@ -79,3 +92,41 @@ values('Paco','Gonzales','admin','12345',1),
 
 INSERT INTO tb_bus (modelo, marca, anio, capacidad, placa)
 VALUES ('Volvo 9700', 'Volvo', 2020, 50, 'ABC-123');
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
+(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones')
+
+INSERT INTO tb_destino (id_destino, nombre_des, imagen) VALUES
+(1, 'Huacachina', 'Destino_HuacaChina.jpg'),
+(2, 'Cuzco', 'Destino_MachuPicchu.jpg'),
+(3, 'Arequipa', 'Destino_Arequipa.jpg'),
+(4, 'Huascarán', 'Destino_Huascaran.jpg'),
+(5, 'Lago Titicaca', 'Destino_LagoTiticaca.jpg'),
+(6, 'Líneas de Nazca', 'Destino_LineasNazca.jpg'),
+(7, 'Máncora', 'Destino_Mancora.jpg'),
+(8, 'Montaña de Colores', 'Destino_MontanaColores.jpg'),
+(9, 'Tambopata', 'Destino_Tambopata.jpg'),
+(10, 'Cañón del Colca', 'Destino_CanonDelColca.jpg');
+
+=======
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) 
+VALUES (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+>>>>>>> branch 'main' of https://github.com/AndersonGcH/PROYECTO-TRANSPORTE-LPII.git
+=======
+INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
+(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+
+INSERT INTO tb_destino (id_destino, nombre_des, imagen) VALUES
+(1, 'Huacachina', 'Destino_HuacaChina.jpg'),
+(2, 'Cuzco', 'Destino_MachuPicchu.jpg'),
+(3, 'Arequipa', 'Destino_Arequipa.jpg'),
+(4, 'Huascarán', 'Destino_Huascaran.jpg'),
+(5, 'Lago Titicaca', 'Destino_LagoTiticaca.jpg'),
+(6, 'Líneas de Nazca', 'Destino_LineasNazca.jpg'),
+(7, 'Máncora', 'Destino_Mancora.jpg'),
+(8, 'Montaña de Colores', 'Destino_MontanaColores.jpg'),
+(9, 'Tambopata', 'Destino_Tambopata.jpg'),
+(10, 'Cañón del Colca', 'Destino_CanonDelColca.jpg');
+>>>>>>> branch 'main' of https://github.com/AndersonGcH/PROYECTO-TRANSPORTE-LPII.git

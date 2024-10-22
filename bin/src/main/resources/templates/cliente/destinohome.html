@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Spring eCommerce</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="/css/heroic-features.css" rel="stylesheet">
+ 
+</head>
+
+<body>
+
+    <div th:include="cliente/template_home.html::header"></div>
+
+    <!-- Page Content -->
+    <div class="container">
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">
+        Spring eCommerce <small>Viajes</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+        <li class="breadcrumb-item active">Viajes</li>
+      </ol>
+
+      <h2 class="mb-4">Viajes para el destino: <span th:text="${nombreDestino}">Nombre del destino</span></h2>
+
+      <!-- Contenedor de cards -->
+<div class="row text-center">
+
+  <div th:if="${not #lists.isEmpty(viajes)}" th:each="viaje : ${viajes}" class="col-lg-3 col-md-6 mb-4">
+    <div class="card h-100">
+      <img class="card-img-top" src="http://placehold.it/500x325" alt="Imagen del bus">
+      <div class="card-body">
+        <h5 class="card-title" th:text="${viaje.idDestino.nombre}">Nombre del destino</h5>
+        <p class="card-text"><strong>Bus:</strong> <span th:text="${viaje.idBus.placa}">Placa del bus</span></p>
+        <p class="card-text"><strong>Fecha de Salida:</strong> <span th:text="${#temporals.format(viaje.fechaSalida, 'dd/MM/yyyy')}">Fecha de salida</span></p>
+        <p class="card-text"><strong>Fecha de Llegada:</strong> <span th:text="${#temporals.format(viaje.fechaLlegada, 'dd/MM/yyyy')}">Fecha de llegada</span></p>
+        <p class="card-text"><strong>Incidencias:</strong> <span th:text="${viaje.incidencias} ?: 'Sin incidencias'">Incidencias</span></p>
+        <p class="card-text"><strong>Precio:</strong> <span th:text="${viaje.precio}">Precio del viaje</span> soles</p>
+      </div>
+      <div class="card-footer">
+        <a th:href="@{'/viaje/' + ${viaje.idViaje}}" class="btn btn-success">Ver detalles</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje de alerta si no hay viajes -->
+  <div class="alert alert-warning col-12" th:if="${#lists.isEmpty(viajes)}" role="alert">
+    No hay viajes disponibles en este momento.
+  </div>
+
+</div>
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <div th:include="cliente/template_home.html::footer"></div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
