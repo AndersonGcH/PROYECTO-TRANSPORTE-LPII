@@ -16,14 +16,18 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "tb_viaje")
 public class Viaje {
 	 
-	    @Id
+
+
+		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "id_viaje")
 	    private Integer idViaje;
@@ -46,9 +50,11 @@ public class Viaje {
 	    private String incidencias;
 
 	    @Column(name = "precio", nullable = false)
-	    private BigDecimal precio;
+	    private double precio;
 
 	    // Constructor vacío
-	    public Viaje() {}
+	    public Viaje() {
+	    	}
+	    }
 
-}
+
