@@ -186,6 +186,38 @@ public class ClienteController {
 
         return "redirect:/";
     }
+    
+    @GetMapping("/delete/cart/{id}")
+    public String deleteViaje(@PathVariable Integer id, Model model) {
+        // Verifica si la lista de detalles no es nula
+        if (detalles != null) {
+            // Filtra y excluye el viaje que se desea eliminar
+            detalles = detalles.stream()
+                    .filter(detalleVenta -> !detalleVenta.getViaje().getIdViaje().equals(id))
+                    .collect(Collectors.toList());
+
+            // Calcula el total de los detalles restantes
+            double sumaTotal = detalles.stream()
+                    .mapToDouble(DetalleVentaPasaje::getTotal)
+                    .sum();
+
+            // Actualiza el total de la venta
+            if (venta == null) {
+                venta = new VentaPasaje();
+            }
+            venta.setTotal(sumaTotal);
+
+            // Agrega los detalles y el total actualizado al modelo
+            model.addAttribute("cart", detalles);
+            model.addAttribute("venta", venta);
+        } else {
+            // Si la lista de detalles es nula, muestra un carrito vacío
+            model.addAttribute("cart", Collections.emptyList());
+        }
+
+        // Redirige a la vista del carrito
+        return "cliente/carrito"; // Asegúrate de que esta vista esté configurada correctamente
+    }
 
     // 7. Ver compras del usuario (requiere autenticación)
     @GetMapping("/compras")

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.transporte.app.services.CronogramaService;
 
-@Controller
+@Controller 
 public class CronogramaController {
 
 	@Autowired
