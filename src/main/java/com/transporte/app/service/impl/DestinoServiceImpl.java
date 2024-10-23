@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.transporte.app.entity.Bus;
 import com.transporte.app.entity.Destino;
 import com.transporte.app.repository.DestinoRepository;
 import com.transporte.app.services.DestinoService;
@@ -20,14 +19,14 @@ public class DestinoServiceImpl implements DestinoService{
 	
 	@Override
 	public List<Destino> getAllDestinos() {
-		// TODO Auto-generated method stub
+		
 		return destinoRepository.findAll();
 	}
 
 
 	@Override
 	public Optional<Destino> findDestinoById(Integer id) {
-		// TODO Auto-generated method stub
+	
 		return destinoRepository.findById(id);
 	}
 

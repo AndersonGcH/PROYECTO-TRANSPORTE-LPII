@@ -6,23 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.transporte.app.entity.Bus;
-import com.transporte.app.entity.Destino;
-import com.transporte.app.entity.Rol;
 import com.transporte.app.entity.Viaje;
 import com.transporte.app.repository.DestinoRepository;
-import com.transporte.app.repository.UsuarioRepository;
 import com.transporte.app.repository.ViajeRepository;
-import com.transporte.app.services.DestinoService;
 import com.transporte.app.services.ViajeService;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ViajeServiceImpl implements ViajeService{
 
 	@Autowired
 	private ViajeRepository viajeRepository;
+	@SuppressWarnings("unused")
 	@Autowired
 	private DestinoRepository destinoRepository;
 	
@@ -32,7 +26,7 @@ public class ViajeServiceImpl implements ViajeService{
 	}
 	@Override
 	public List<Viaje> getAllViajes() {
-		// TODO Auto-generated method stub
+	
 		return viajeRepository.findAll();
 	}
 
