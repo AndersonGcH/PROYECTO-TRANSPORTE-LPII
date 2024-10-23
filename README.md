@@ -132,3 +132,19 @@ values
 (3, 3, 2, 180.00, 'Cancelado'),
 (4, 4, 3, 220.00, 'Reservado'),
 (5, 5, 4, 250.00, 'Pagado');
+
+insert into tb_viaje (id_bus,id_destino,fech_sal,fech_lle,incidencias,precio)values
+(1,1,'2024-06-01','2024-06-02','Ninguna',150.00),
+(2,2,'2024-06-05','2024-06-06','Retraso por tráfico',200.00),
+(3,3,'2024-06-10','2024-06-11','Parada no programada',180.00),
+(4,4,'2024-06-15','2024-06-16','Problema mecánico',220.00),
+(1,5,'2024-06-20','2024-06-21','Ninguna',250.00),
+(2,6,'2024-06-25','2024-06-26','Cambio de ruta',230.00),
+(3,7,'2024-06-30','2024-07-01','Ninguna',210.00);
+
+insert into personal (nombre,apellido,dni,telefono,email,direccion,idrol)values
+('Juan','Perez','98765432','123-456-7890','juan.perez@example.com','123 Main St',1),
+('Laura','Martinez','87654321','234-567-8901','laura.martinez@example.com','456 Elm St',2),
+('Carlos','Lopez','76543210','345-678-9012','carlos.lopez@example.com','789 Oak St',1),
+('Ana','Gonzalez','65432109','456-789-0123','ana.gonzalez@example.com','101 Pine St',2),
+('Luis','Ramirez','54321098','567-890-1234','luis.ramirez@example.com','202 Maple St',1);
