@@ -91,11 +91,11 @@ insert into usuario (nombres,apellidos,usuario,clave,idrol)
 values('Paco','Gonzales','admin','12345',1),
 ('Jorge','Guerra','jorge','jorge123',2);
 
-INSERT INTO tb_bus (modelo, marca, anio, capacidad, placa)
-VALUES ('Volvo 9700', 'Volvo', 2020, 50, 'ABC-123');
-
-INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
-(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+insert into tb_bus (modelo, marca, anio, capacidad, placa) values
+  ('Mercedes-Benz Tourismo','Mercedes-Benz',2019,55,'DEF-456'),
+  ('Scania Irizar', 'Scania', 2021, 60, 'GHI-789'),
+  ('MAN Lion’s Coach', 'MAN', 2018, 50, 'JKL-012'),
+  ('Setra TopClass', 'Setra', 2022, 52, 'MNO-345');
 
 INSERT INTO tb_destino (id_destino, nombre_des, imagen) VALUES
 (1, 'Huacachina', 'Destino_HuacaChina.jpg'),
@@ -112,7 +112,22 @@ INSERT INTO tb_destino (id_destino, nombre_des, imagen) VALUES
 INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) 
 VALUES (1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
 
-INSERT INTO tb_revision (id_bus, fecha_revision, tipo_revision, resultado, observaciones) VALUES 
-(1, '2024-01-15', 'Técnica', 'Aprobado', 'Sin observaciones');
+insert into
+  tb_cliente (nombre_cli, dni)
+values
+  ('Carlos Perez', '12345678'),
+  ('Ana Gomez', '87654321'),
+  ('Luis Martinez', '11223344'),
+  ('Maria Rodriguez', '44332211'),
+  ('Jose Fernandez', '55667788');
+
+insert into
+  tb_pasaje (id_cli, id_destino, id_bus, precio, estado)
+values
+  (1, 1, 1, 150.00, 'Reservado'),
+  (2, 2, 2, 200.00, 'Pagado'),
+  (3, 3, 2, 180.00, 'Cancelado'),
+  (4, 4, 3, 220.00, 'Reservado'),
+  (5, 5, 4, 250.00, 'Pagado');
 
 
