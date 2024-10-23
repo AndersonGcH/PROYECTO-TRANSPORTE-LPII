@@ -40,4 +40,14 @@ public class ReportService {
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource.getConnection());
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
+    public byte[] generateRevisionBusReport() throws Exception {
+        InputStream reportStream = getClass().getResourceAsStream("/reporterevisionbuses.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
+
+        Map<String, Object> parameters = new HashMap<>();
+        // Agrega parámetros si es necesario
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource.getConnection());
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+    }
 }

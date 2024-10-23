@@ -42,4 +42,16 @@ public class ReportController {
             return ResponseEntity.status(500).body(null);
         }
     }
+    @GetMapping("/revisionbus")
+    public ResponseEntity<byte[]> getRevisionBusReport() {
+        try {
+            byte[] report = reportService.generateRevisionBusReport();
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ReporteRevisionBuses.pdf")
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(report);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(null);
+        }
+    }
 }
