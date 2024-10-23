@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"> 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,11 +27,11 @@
                     <div class="cliente-card-img img">
                     <img class="card-img-top" th:src="@{/images/{img} (img=${destino.imagen})}" alt="">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <p class="card-text cliente-text" th:text="${destino.nombre}"></p>
                     </div>
                     <!-- Pie de la tarjeta con botón -->
-                    <div class="card-footer cliente-footer">
+                    <div class="card-footer cliente-footer text-center">
                         <a th:href="@{/destinohome/{id} (id=${destino.idDestino})}" class="btn btn-success">Ver viajes</a>
                     </div>
                 </div>
@@ -45,5 +45,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script th:include="/cliente/template_home.html::script"></script>
+    
 </body>
 </html>

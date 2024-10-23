@@ -1,40 +1,171 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Spring eCommerce</title>
-
-
+  <title>BusExpress</title>
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
-
+  <link href="/css/cliente.css" rel="stylesheet">
 </head>
 
-<body>
+<style>
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  padding: 20px;
+  margin: 20px 0 20px 385px;
+  border-radius: 20px;
+  position: relative;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+}
 
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  color: #00bfff;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #00bfff;
+}
+
+.message, 
+.signin {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+.signin a {
+  color: #00bfff;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  padding: 20px 05px 05px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+  color: #00bfff;
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.input {
+  font-size: medium;
+}
+
+.submit {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+  background-color: #00bfff;
+}
+
+.submit:hover {
+  background-color: #00bfff96;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+</style>
+
+<body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Incluyendo el header desde la plantilla -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Spring Ecommerce</a>
+      <a class="navbar-brand" th:href="@{/cliente}">BusExpress</a>
 
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-        </ul>
       </div>    
     </div>
   </nav>
@@ -42,54 +173,41 @@
 
  <!-- Page Content -->
   <div class="container">
-
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-4"></div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h2>Registro</h2>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <form th:action="@{/save}" method="post">
-      <div class="form-group">
-        <label for="nombres">Nombres:</label> <input type="text"
-          class="form-control" id="nombres" name="nombres" required
-          placeholder="Ingrese sus nombres" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="apellidos">Apellidos:</label> <input type="text"
-          class="form-control" id="apellidos" name="apellidos" required
-          placeholder="Ingrese sus nombres" autocomplete="off">
-      </div>
-
-      <div class="form-group">
-        <label for="correo">Email:</label> <input type="email"
-          class="form-control" id="correo" name="correo" required
-          placeholder="Ingrese su email" autocomplete="off">
-      </div>
-
-      <div class="form-group">
-        <label for="direccion">Dirección:</label> <input type="text"
-          class="form-control" id="direccion" name="direccion" required
-          placeholder="Ingrese su dirección" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="username">Nombre Usuario:</label> <input type="text"
-          class="form-control" id="username" name="username" required
-          placeholder="Ingrese sus nombres" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="clave">Contraseña</label> <input type="password"
-          class="form-control" id="clave" name="clave" required placeholder="Ingrese su contraseña" autocomplete="off">
-      </div>
-      <div class="col-sm-2">
-        <button type="submit" class="btn btn-success">Guardar</button>
-      </div>
-    </form>
+	<form class="form" th:action="@{/save}" method="post">
+	    <p class="title">Registro </p>
+	    <p class="message">Regístrese ahora y obtenga acceso completo a nuestra aplicación.</p>
+	        <div class="flex">
+	        <label>
+	            <input id="nombres" name="nombres" class="input" type="text" placeholder="" required="">
+	            <span>Nombre</span>
+	        </label>
+	
+	        <label>
+	            <input id="apellidos" name="apellidos" class="input" type="text" placeholder="" required="">
+	            <span>Apellido</span>
+	        </label>
+	    </div>  
+	            
+	    <label>
+	        <input id="correo" name="correo" class="input" type="email" placeholder="" required="">
+	        <span>Email</span>
+	    </label> 
+	        
+	    <label>
+	        <input id="direccion" name="direccion" class="input" type="text" placeholder="" required="">
+	        <span>Dirección</span>
+	    </label>
+	    <label>
+	        <input id="username" name="username" class="input" type="text" placeholder="" required="">
+	        <span>Nombre usuario</span>
+	    </label>
+	    <label>
+	        <input id="clave" name="clave" class="input" type="password" placeholder="" required="">
+	        <span>Contraseña</span>
+	    </label>
+	    <button class="submit">Guardar</button>
+	    <p class="signin">¿Ya tienes una cuenta? - <a th:href="@{/login}">Iniciar sesión</a> </p>
+	</form>
 
   </div>
 

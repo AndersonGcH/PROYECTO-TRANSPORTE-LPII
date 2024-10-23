@@ -109,18 +109,13 @@ public class UsuarioController {
         return "redirect:/"; // Redirigir a la página de inicio
     }
 
-    // Lógica para manejar las compras
     @GetMapping("/comprar")
     public String comprar(HttpSession session, Model model) {
         Long idUsuario = (Long) session.getAttribute("idusuario");
-
         if (idUsuario == null || idUsuario.equals(temporaryUserId)) {
-            // Si el usuario no está autenticado o es el temporal, redirigir a login
             model.addAttribute("error", "Debes registrarte o iniciar sesión para realizar una compra.");
-            return "login"; // Redirigir a la página de login
+            return "login";
         }
-
-        // Aquí va la lógica de compra si el usuario es válido
-        return "compra"; // Redirigir a la página de compra
+        return "compra";
     }
 }

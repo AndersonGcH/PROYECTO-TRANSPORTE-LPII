@@ -1,19 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>BusExpress</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="/css/heroic-features.css" rel="stylesheet">
-  <link href="/css/cliente.css" rel="stylesheet">
- 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>BusExpress</title>
+<!-- Bootstrap core CSS -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="/css/heroic-features.css" rel="stylesheet">
+<link href="/css/cliente.css" rel="stylesheet">
 </head>
+
+<style>
+h1, h2, h5, h6 {
+  font-family: 'Pacifico', cursive; 
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+  background-color: #fff;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #2c3e50;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #34495e;
+}
+
+.card-footer {
+  background-color: #fff;
+  border-top: none;
+  padding: 10px;
+  text-align: center;
+}
+
+.btn-success {
+  background-color: #4CAF50; /* Verde natural */
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #388E3C; /* Oscurecer el verde al hacer hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra en hover */
+}
+</style>
 
 <body>
 
@@ -23,11 +81,11 @@
     <div class="container">
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        BusExpress <small>Viajes</small>
+        BusExpress <small>- Viajes</small>
       </h1>
 
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a th:href="@{/viaje}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/cliente}">Home</a></li>
         <li class="breadcrumb-item active">Viajes</li>
       </ol>
       
@@ -39,7 +97,7 @@
 
   <div th:if="${not #lists.isEmpty(viajes)}" th:each="viaje : ${viajes}" class="col-lg-3 col-md-6 mb-4">
     <div class="card h-100">
-      <img class="card-img-top" src="http://placehold.it/500x325" alt="Imagen del bus">
+      <img class="card-img-top" th:src="@{'/images/' + ${viaje.idDestino.imagen}}" alt="">
       <div class="card-body">
         <h5 class="card-title" th:text="${viaje.idDestino.nombre}">Nombre del destino</h5>
         <p class="card-text"><strong>Bus:</strong> <span th:text="${viaje.idBus.placa}">Placa del bus</span></p>
@@ -69,6 +127,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script th:include="/cliente/template_home.html::script"></script>
 
 </body>
 </html>
