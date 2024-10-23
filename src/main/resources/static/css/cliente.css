@@ -50,6 +50,15 @@ body {
     color: #ffcc00;
 }
 
+/*----- Img -----*/
+.img-fluid.rounded {
+bottom: 20px; /* Mantiene el camión cerca de la parte inferior */
+transition: transform 0.2s; /* Suaviza la animación */
+box-shadow: 6px 12px 4px rgba(0, 0, 0, 0.5); /* Sombra gris */
+}
+
+
+
 /* Coche */
 .truck {
   --width: 220;

@@ -132,23 +132,20 @@
 	</script>
 	<script th:fragment="script">
         const truck = document.querySelector('.truck');
-        let position = 0; // posición inicial del coche
+        let position = 0; // posición inicial del camión
         const speed = 2; // velocidad del movimiento
-        const direction = 1; // 1 para la derecha, -1 para la izquierda
-        const windowWidth = window.innerWidth; // ancho de la ventana
+        const resetPosition = 1350; // límite de reinicio
 
         function moveTruck() {
-            position += speed * direction;
+            position += speed; // Incrementa la posición
 
-            // Cambia de dirección si el coche alcanza los límites
-            if (position > windowWidth - 250) {
-                direction = -1; // cambia a la izquierda
-            } else if (position < 0) {
-                direction = 1; // cambia a la derecha
+            // Reiniciar la posición si el camión alcanza el límite
+            if (position >= resetPosition) { 
+                position = 0; // Reinicia a 0
             }
 
-            truck.style.transform = `translateX(${position}px)`;
-            requestAnimationFrame(moveTruck);
+            truck.style.transform = `translateX(${position}px)`; // Aplica la transformación
+            requestAnimationFrame(moveTruck); // Llama a la función de nuevo
         }
 
         // Comienza el movimiento
