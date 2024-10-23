@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" 
+              name="ReporteBuses" 
+              pageWidth="595" 
+              pageHeight="842" 
+              columnWidth="555" 
+              leftMargin="20" 
+              rightMargin="20" 
+              topMargin="20" 
+              bottomMargin="20" 
+              uuid="12345678-1234-1234-1234-123456789012">
+
+    <queryString>
+        <![CDATA[SELECT modelo, marca, anio, capacidad, placa FROM tb_bus]]>
+    </queryString>
+
+    <field name="modelo" class="java.lang.String"/>
+    <field name="marca" class="java.lang.String"/>
+    <field name="anio" class="java.lang.Integer"/>
+    <field name="capacidad" class="java.lang.Integer"/>
+    <field name="placa" class="java.lang.String"/>
+
+    <title>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Reporte de Buses]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Modelo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="111" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Marca]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="222" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Año]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="333" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Capacidad]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="444" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Placa]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="30">
+            <textField>
+                <reportElement x="0" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="111" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="222" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="333" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{capacidad}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="444" y="0" width="111" height="30"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

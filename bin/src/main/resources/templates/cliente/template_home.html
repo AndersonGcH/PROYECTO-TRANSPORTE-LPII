@@ -12,12 +12,54 @@
     <link href="css/heroic-features.css" rel="stylesheet">
     <link href="/css/cliente.css" rel="stylesheet">
 </head>
+
+
+<body>
+
+
+<<<<<<< HEAD
+      <form class="form-inline my-2 my-lg-0" method="post"
+      action="#">
+      <input class="form-control mr-sm-2" type="search"
+      placeholder="Buscar" aria-label="Search" name="nombre"
+      autocomplete="off">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link"
+          href="carrito.html">Carrito</a></li>
+          <li class="nav-item"><a class="nav-link"
+            href="login.html">Login</a></li>
+           <li class="nav-item"><a class="nav-link"
+            href="login.html">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  </div>
+=======
+>>>>>>> 6f90bd183d3f40d406e68816357e3d19753a3864
+
+    <!-- Page Content -->
+
+    <!-- /.container -->
+    
+
+    
+
 <body class="cliente-container">
     <!-- Navigation -->
     <div th:fragment="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-cliente">
             <div class="container">
-                <a class="navbar-brand" href="#">BusExpress</a>
+                <a class="navbar-brand" th:href="@{/cliente}">BusExpress</a> 
                 <form class="form-inline my-1 my-lg-2" method="post" action="#">
                     <input class="form-control mr-sm-4" type="search" placeholder="Buscar" aria-label="Search" name="nombre" autocomplete="off">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
@@ -28,22 +70,26 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/carrito">Carrito</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Login</a>
+                            <a class="nav-link" th:href="@{/getCart}">Carrito</a>
+                         </li>
+						<li>
+                            <a class="nav-link" th:href="@{/login}">Login</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+   <header class="cliente-jumbotron jumbotron my-0 text-center">
+            <h1 class="cliente-title">Bienvenido a BusExpress</h1>
+            <p class="cliente-lead lead">Tu tienda de viajes en línea</p>
+        </header>
     </div>
 
     <!-- Footer -->
     <div th:fragment="footer">
         <footer class="py-4 bg-dark footer-class">
             <div class="container">
-                <p class="m-0 text-center text-white">&copy; [[${#dates.format(new java.util.Date(), 'yyyy')}]] Designed by William. All rights reserved.</p>
+                <p class="m-2 text-center text-white">&copy; [[${#dates.format(new java.util.Date(), 'yyyy')}]] Designed by William. All rights reserved.</p>
             </div>
         </footer>
     </div>

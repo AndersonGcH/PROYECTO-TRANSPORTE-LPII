@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> 
+    <title>Cronograma de Viajes</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Cronograma de Viajes</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID Cronograma</th>
+                    <th>Fecha</th>
+                    <th>Hora de Salida</th>
+                    <th>Hora de Llegada</th>
+                    <th>Incidencias</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody th:if="${not #lists.isEmpty(cronogramas)}" th:each="cronograma : ${cronogramas}">
+                <tr>
+                    <td th:text="${cronograma.id_cronograma}"></td>
+					  <td th:text="${#temporals.format(cronograma.fechaSalida, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#temporals.format(cronograma.hora_salida, 'HH:mm')}"></td>
+                    <td th:text="${#temporals.format(cronograma.hora_llegada, 'HH:mm')}"></td>
+                    <td th:text="${cronograma.viaje.incidencias} ?: 'Sin incidencias'"></td>
+                    <td th:text="${cronograma.viaje.precio} + ' soles'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
