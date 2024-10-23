@@ -23,9 +23,11 @@
 }
 
 .form-register h1 {
-  font-size: 22px;
-  margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
 }
+
 
 .controls {
   width: 100%;
