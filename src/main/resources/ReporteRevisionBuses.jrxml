@@ -11,7 +11,6 @@
               topMargin="20" 
               bottomMargin="20" 
               uuid="12345678-1234-1234-1234-123456789012">
-
     <queryString>
         <![CDATA[
             SELECT b.modelo, b.marca, r.fecha_revision, r.tipo_revision, r.resultado, r.observaciones 

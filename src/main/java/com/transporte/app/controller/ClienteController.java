@@ -46,7 +46,8 @@ public class ClienteController {
 
     @Autowired
     private VentaPasajeService ventaPasajeService;
-
+    
+    @SuppressWarnings("unused")
     @Autowired
     private DetalleVentaPasajeService detalleVentaPasajeService;
 
