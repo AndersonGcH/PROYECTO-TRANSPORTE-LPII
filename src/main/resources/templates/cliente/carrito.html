@@ -1,21 +1,128 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Carrito</title>
-
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/css/heroic-features.css" rel="stylesheet">
     <link href="/css/cliente.css" rel="stylesheet">
-
 </head>
+
+<style>
+/* Estilos generales */
+h1, h2{
+  font-family: 'Pacifico', cursive;
+}
+/* Estilos para la tabla del carrito */
+.table {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.table thead th {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.table tbody td {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-dark {
+    background-color: #4CAF50;
+    border-radius: 20px;
+    padding: 10px 20px 10px;
+    margin: 12px 0 12px 0;
+    font-size: 1rem;
+    color: white;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-dark:hover {
+    background-color: #388E3C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el subtotal */
+.list-group-item {
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* BreadCrumb */
+.breadcrumb {
+    border-radius: 10px;
+    color: #fff;
+}
+
+.breadcrumb-item a {
+    transition: color 0.3s ease;
+}
+
+/* Tarjeta del carrito */
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 30px;
+}
+
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.8rem;
+    }
+
+    .btn-dark, .btn-danger {
+        font-size: 0.8rem;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+    }
+}
+
+</style>
 
 <body>
 
@@ -31,7 +138,7 @@
         </h1>
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/cliente}">Home</a></li>
             <li class="breadcrumb-item active">Carrito</li>
         </ol>
 
@@ -91,6 +198,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script th:include="/cliente/template_home.html::script"></script>
 
 </body>
 

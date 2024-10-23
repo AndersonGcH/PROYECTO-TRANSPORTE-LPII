@@ -1,23 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Detalles del viaje">
-  <meta name="author" content="TuNombre">
-
-  <title>Detalles del Viaje</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="/css/heroic-features.css" rel="stylesheet">
-  <link href="/css/cliente.css" rel="stylesheet">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Detalles del viaje">
+<meta name="author" content="TuNombre">
+<title>Detalles del Viaje</title>
+<!-- Bootstrap core CSS -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="/css/heroic-features.css" rel="stylesheet">
+<link href="/css/cliente.css" rel="stylesheet">
 </head>
+
+<style>
+h1, h2, h5, h6 {
+  font-family: 'Pacifico', cursive;
+}
+
+.btn-dark {
+  background-color: #4CAF50;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #388E3C;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.list-group-item {
+  background-color: #fafafa;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.breadcrumb {
+  color: #fff;
+  border-radius: 15px;
+}
+
+/* Estilo para centrar la imagen */
+.col-lg-6.d-flex {
+  height: 100%; /* Asegura que el contenedor ocupe todo el espacio disponible */
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto; /* Mantiene la proporción de la imagen */
+  display: block;
+  margin: 160px auto; /* Centra la imagen horizontalmente */
+  border-radius: 15px; /* Mantiene los bordes redondeados */
+}
+
+footer {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 20px;
+}
+
+footer a {
+  color: #fff;
+}
+</style>
 
 <body>
 
@@ -30,11 +89,11 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">
-      Spring eCommerce <small>Detalles del Viaje</small>
+      BusExpress <small>Detalles del Viaje</small>
     </h1>
 
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a th:href="@{/cliente}">Home</a></li>
       <li class="breadcrumb-item active">Detalles del Viaje</li>
     </ol>
 
@@ -115,6 +174,8 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script th:include="/cliente/template_home.html::script"></script>
+
 
 </body>
 

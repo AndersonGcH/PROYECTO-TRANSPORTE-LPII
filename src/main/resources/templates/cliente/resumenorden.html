@@ -1,24 +1,114 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>Resumen - Orden</title>
-
-
   <!-- Bootstrap core CSS -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Custom styles for this template -->
   <link href="/css/heroic-features.css" rel="stylesheet">
   <link href="/css/cliente.css" rel="stylesheet">
-
 </head>
+
+<style>
+/* Estilos generales */
+h1, h2, h5, h6 {
+  font-family: 'Pacifico', cursive;
+}
+
+/* Breadcrumb (navegación) */
+.breadcrumb {
+    border-radius: 10px;
+    color: white;
+}
+
+/* Tarjeta de datos de la orden */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.card-body h5 {
+    margin-top: 20px;
+}
+
+.card-body .alert {
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+}
+
+/* Estilo de la tabla */
+.table {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.table thead th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table tbody td {
+    text-align: center;
+    color: #34495e;
+    font-size: 1rem;
+}
+
+/* Botones */
+.btn-dark {
+    background-color: #4CAF50;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-dark:hover {
+    background-color: #388E3C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Resumen de la orden */
+.list-group-item {
+    background-color: white;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+    }
+
+    .btn-dark {
+        font-size: 0.9rem;
+    }
+
+    .table {
+        font-size: 0.8rem;
+    }
+}
+
+</style>
 
 <body>
 
@@ -32,7 +122,7 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Spring eCommerce <small>Resumen de la orden</small>
+        BusExpress <small>Resumen de la orden</small>
       </h1>
 
       <ol class="breadcrumb">
@@ -89,8 +179,7 @@
 
           <ul class="list-group">
             <li class="list-group-item"><h5 th:text="'Total  :'+${venta.total}"> </h5></li>
-              <a th:href="@{/saveVenta}" class="btn btn-dark">Generar</a>
-
+              <a th:href="@{/saveVenta}" class="btn btn-dark">Generar</a>	
           </ul>
         </div>
       </div>
@@ -106,6 +195,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script th:include="/cliente/template_home.html::script"></script>
 
 </body>
 
